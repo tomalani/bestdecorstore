@@ -54,3 +54,10 @@ Route::get('/backend/orders/edit/{id}', [App\Http\Controllers\OrderController::c
 Route::get('/backend/orders/delete/{id}', [App\Http\Controllers\OrderController::class, 'delete']);
 Route::post('/backend/orders/update', [App\Http\Controllers\OrderController::class, 'update']);
 
+Route::post('/backend/orders/confirm-order', [App\Http\Controllers\OrderController::class, 'confirm_order']);
+Route::post('/backend/orders/shipped-order', [App\Http\Controllers\OrderController::class, 'shipped_order']);
+Route::post('/backend/orders/delivery-order', [App\Http\Controllers\OrderController::class, 'delivery_order']);
+Route::get('/backend/orders/reject-order/{id}', [App\Http\Controllers\OrderController::class, 'reject_order']);
+
+//ajax backend order
+Route::get('/backend/ajax-orders-item', [App\Http\Controllers\OrderController::class, 'ajax_order_items'])->name('backend.orders.item.ajax');

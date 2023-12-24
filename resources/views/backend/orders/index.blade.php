@@ -105,6 +105,8 @@
                                                     <span class="brap badges-secondary">Shipped</span>
                                                 @elseif($obj->status == 4)
                                                     <span class="brap badges-success">Delivered</span>
+                                                @elseif($obj->status == 0)
+                                                    <span class="brap badges-danger">Cancle</span>
                                                 @endif
                                             </td>
                                             <td class="align-middle text-center">
@@ -118,12 +120,13 @@
                                             <td class="align-middle">
                                                 @if ($obj->status == 1)
                                                     <div class="d-flex align-item-center justify-content-center gap-3">
-                                                        <a data-bs-toggle="modal" data-bs-target="#confirm_order"
-                                                            class="btn btn-success font-weight-bold text-xs"
+                                                        <a data-id="{{ $obj->id }}"
+                                                            data-customer-name="{{ $obj->name }}"
+                                                            class="btn btn-success font-weight-bold text-xs confirm-orders"
                                                             data-toggle="tooltip" data-original-title="Edit user">
                                                             Confrim
                                                         </a>
-                                                        <a href="{{ url('/backend/categories/edit', $obj->id) }}"
+                                                        <a href="{{ url('/backend/orders/reject-order', $obj->id) }}"
                                                             class="btn btn-danger font-weight-bold text-xs"
                                                             data-toggle="tooltip" data-original-title="Edit user">
                                                             Reject
@@ -131,21 +134,16 @@
                                                     </div>
                                                 @elseif($obj->status == 2)
                                                     <div class="d-flex align-item-center justify-content-center gap-3">
-                                                        <a href="{{ url('/backend/categories/edit', $obj->id) }}"
-                                                            class="btn btn-success font-weight-bold text-xs"
+                                                        <a data-id="{{ $obj->id }}"
+                                                            class="btn btn-success font-weight-bold text-xs  shipped-orders"
                                                             data-toggle="tooltip" data-original-title="Edit user">
                                                             Shipped
-                                                        </a>
-                                                        <a href="{{ url('/backend/categories/edit', $obj->id) }}"
-                                                            class="btn btn-danger font-weight-bold text-xs"
-                                                            data-toggle="tooltip" data-original-title="Edit user">
-                                                            Reject
                                                         </a>
                                                     </div>
                                                 @elseif($obj->status == 3)
                                                     <div class="d-flex align-item-center justify-content-center gap-3">
-                                                        <a href="{{ url('/backend/categories/edit', $obj->id) }}"
-                                                            class="btn btn-info font-weight-bold text-xs"
+                                                        <a data-id="{{ $obj->id }}"
+                                                            class="btn btn-info font-weight-bold text-xs delivery-orders"
                                                             data-toggle="tooltip" data-original-title="Edit user">
                                                             Delivered
                                                         </a>
@@ -158,8 +156,14 @@
                                                             complete
                                                             </a>
                                                     </div>
+                                                @elseif($obj->status == 0)
+                                                    <div class="d-flex align-item-center justify-content-center gap-3">
+                                                        <button href="{{ url('/backend/categories/edit', $obj->id) }}"
+                                                            class="btn btn-danger font-weight-bold text-xs" disabled>
+                                                            Cancle
+                                                            </a>
+                                                    </div>
                                                 @endif
-
                                             </td>
                                         </tr>
                                     @endforeach
@@ -172,7 +176,7 @@
         </div>
 
         // confrim order
-        <div class="modal fade" id="confirm_order" tabindex="-1" role="dialog" aria-labelledby="confirm_order"
+        <div class="modal fade" id="confirm_order_table" tabindex="-1" role="dialog" aria-labelledby="confirm_order"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -183,286 +187,98 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="card">
-                            <div class="table-responsive">
-                                <table class="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Project</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Budget</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Status</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Completion</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2">
-                                                    <div>
-                                                        <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/logos/small-logos/logo-spotify.svg"
-                                                            class="avatar avatar-sm rounded-circle me-2">
-                                                    </div>
-                                                    <div class="my-auto">
-                                                        <h6 class="mb-0 text-xs">Spotify</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">$2,500</p>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-dot me-4">
-                                                    <i class="bg-info"></i>
-                                                    <span class="text-dark text-xs">working</span>
-                                                </span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="me-2 text-xs">60%</span>
-                                                    <div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-info" role="progressbar"
-                                                                aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 60%;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="align-middle">
-                                                <button class="btn btn-link text-secondary mb-0">
-                                                    <i class="fa fa-ellipsis-v text-xs" aria-hidden="true"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2">
-                                                    <div>
-                                                        <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/logos/small-logos/logo-invision.svg"
-                                                            class="avatar avatar-sm rounded-circle me-2">
-                                                    </div>
-                                                    <div class="my-auto">
-                                                        <h6 class="mb-0 text-xs">Invision</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">$5,000</p>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-dot me-4">
-                                                    <i class="bg-success"></i>
-                                                    <span class="text-dark text-xs">done</span>
-                                                </span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="me-2 text-xs">100%</span>
-                                                    <div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-success" role="progressbar"
-                                                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 100%;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="align-middle">
-                                                <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    <i class="fa fa-ellipsis-v text-xs" aria-hidden="true"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2">
-                                                    <div>
-                                                        <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/logos/small-logos/logo-jira.svg"
-                                                            class="avatar avatar-sm rounded-circle me-2">
-                                                    </div>
-                                                    <div class="my-auto">
-                                                        <h6 class="mb-0 text-xs">Jira</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">$3,400</p>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-dot me-4">
-                                                    <i class="bg-danger"></i>
-                                                    <span class="text-dark text-xs">canceled</span>
-                                                </span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="me-2 text-xs">30%</span>
-                                                    <div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-danger" role="progressbar"
-                                                                aria-valuenow="30" aria-valuemin="0" aria-valuemax="30"
-                                                                style="width: 30%;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="align-middle">
-                                                <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    <i class="fa fa-ellipsis-v text-xs" aria-hidden="true"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2">
-                                                    <div>
-                                                        <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/logos/small-logos/logo-slack.svg"
-                                                            class="avatar avatar-sm rounded-circle me-2">
-                                                    </div>
-                                                    <div class="my-auto">
-                                                        <h6 class="mb-0 text-xs">Slack</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">$1,000</p>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-dot me-4">
-                                                    <i class="bg-danger"></i>
-                                                    <span class="text-dark text-xs">canceled</span>
-                                                </span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="me-2 text-xs">0%</span>
-                                                    <div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-success" role="progressbar"
-                                                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"
-                                                                style="width: 0%;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="align-middle">
-                                                <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    <i class="fa fa-ellipsis-v text-xs" aria-hidden="true"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2">
-                                                    <div>
-                                                        <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/logos/small-logos/logo-webdev.svg"
-                                                            class="avatar avatar-sm rounded-circle me-2">
-                                                    </div>
-                                                    <div class="my-auto">
-                                                        <h6 class="mb-0 text-xs">Webdev</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">$14,000</p>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-dot me-4">
-                                                    <i class="bg-info"></i>
-                                                    <span class="text-dark text-xs">working</span>
-                                                </span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="me-2 text-xs">80%</span>
-                                                    <div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-info" role="progressbar"
-                                                                aria-valuenow="80" aria-valuemin="0" aria-valuemax="80"
-                                                                style="width: 80%;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="align-middle">
-                                                <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    <i class="fa fa-ellipsis-v text-xs" aria-hidden="true"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2">
-                                                    <div>
-                                                        <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/logos/small-logos/logo-xd.svg"
-                                                            class="avatar avatar-sm rounded-circle me-2">
-                                                    </div>
-                                                    <div class="my-auto">
-                                                        <h6 class="mb-0 text-xs">Adobe XD</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">$2,300</p>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-dot me-4">
-                                                    <i class="bg-success"></i>
-                                                    <span class="text-dark text-xs">done</span>
-                                                </span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="me-2 text-xs">100%</span>
-                                                    <div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-success" role="progressbar"
-                                                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 100%;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="align-middle">
-                                                <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    <i class="fa fa-ellipsis-v text-xs" aria-hidden="true"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div>
+                            <h4 class="customer-name-con"></h4>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">Reject</button>
-                        <button type="button" class="btn bg-gradient-primary">Confirm</button>
+                    <form action="{{ url('backend/orders/confirm-order') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="order_id" id="order-id-confirm">
+                        <div class="modal-body">
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <table class="table align-items-center mb-0" id="confirm-data-order-table">
+                                        <thead>
+                                            <tr>
+                                                <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Product Name</th>
+                                                <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    Quantity</th>
+                                                <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    Price</th>
+                                                <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tr-confirm">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer confirm-group-btn">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        // confrim shipped
+        <div class="modal fade" id="shipped_order_table" tabindex="-1" role="dialog" aria-labelledby="confirm_order"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm Shipped</h5>
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
+                    <form action="{{ url('backend/orders/shipped-order') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="order_id" id="order-id-confirm">
+                        <div class="modal-body">
+                            <h3>Confirm Shipped Order ?</h3>
+                        </div>
+                        <div class="modal-footer ">
+                            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</a>
+                                <button type="submit" class="btn bg-gradient-primary"
+                                    id="confirmButton">Confirm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        // confrim delivery
+        <div class="modal fade" id="delivery_order_table" tabindex="-1" role="dialog" aria-labelledby="confirm_order"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm Delivery</h5>
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ url('backend/orders/delivery-order') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="order_id" id="order-id-confirm">
+                        <div class="modal-body">
+                            <h3>Confirm Delivery Order ?</h3>
+                        </div>
+                        <div class="modal-footer ">
+                            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</a>
+                                <button type="submit" class="btn bg-gradient-primary"
+                                    id="confirmButton">Confirm</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -482,4 +298,92 @@
             </div>
         </footer>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Your code here
+            console.log("Document is ready!");
+
+            // Example: Attach a click event to a button
+            $(".confirm-orders").click(function() {
+                // Get the data-id attribute of the clicked element
+                const orderId = $(this).attr('data-id');
+                const customName = $(this).attr('data-customer-name')
+                // Make an AJAX request
+                $.ajax({
+                    url: '/backend/ajax-orders-item', // Replace with your actual API endpoint
+                    method: 'GET',
+                    data: {
+                        orderId: orderId
+                    },
+                    success: function(response) {
+                        const data = response;
+                        let sum_table = 0;
+                        const dataRow = data?.map((d) => {
+                            const total = d.quantity * d.price
+                            sum_table += total
+                            const STR_TR = `<tr>
+                                                <td>
+                                                    <div class="my-auto">
+                                                        <h6 class="mb-0 text-xs">${d.product_name}</h6>
+                                                    </div>
+                                                </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">${d.quantity}</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">$ ${(d.price).toFixed(2)}</p>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <p class="text-xs font-weight-bold mb-0">$ ${(total).toFixed(2)}</p>
+                                            </td>
+                                        </tr>`
+                            return STR_TR
+                        })
+
+                        const tr_sum = `<tr>
+                                                <td>
+                                                   
+                                                </td>
+                                            <td>
+                                               
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">Total : </p>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <p class="text-xs font-weight-bold mb-0">$ ${(sum_table).toFixed(2)}</p>
+                                            </td>
+                                        </tr>`
+                        const groupBtn = `<a href="${window.location.origin}/backend/orders/reject-order/${orderId}" class="btn bg-gradient-danger" >Reject</a>
+                  <button type="submit" class="btn bg-gradient-primary" id="confirmButton">Confirm</button>`;
+
+                        $('.confirm-group-btn').html(groupBtn)
+                        $('#tr-confirm').html(dataRow.join('') + tr_sum);
+                        $(".customer-name-con").html(customName)
+                        $("#order-id-confirm").val(orderId)
+                        // Show modal
+                        $('#confirm_order_table').modal('show');
+                    },
+                    error: function(error) {
+                        // Handle any errors that occurred during the AJAX request
+                        console.error('Error:', error);
+                    }
+                });
+            });
+
+            $(".shipped-orders").click(function() {
+                const orderId = $(this).attr('data-id');
+                $("#order-id-confirm").val(orderId)
+                $('#shipped_order_table').modal('show');
+            })
+            $(".delivery-orders").click(function() {
+                const orderId = $(this).attr('data-id');
+                $("#order-id-confirm").val(orderId)
+                $('#delivery_order_table').modal('show');
+            })
+        });
+    </script>
 @endsection

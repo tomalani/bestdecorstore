@@ -11,7 +11,17 @@ class OrdersDataAccess
     public function getAll()
     {
         try {
-            return Orders::leftJoin('users', 'users.id', '=', 'orders.user_id')->get();
+            return Orders::select('orders.*', 'users.name', 'users.id as user_id', 'users.name')
+                ->join('users', 'users.id', '=', 'orders.user_id')
+                ->get();
+        } catch (Exception $e) {
+            throw new Exception($e);
+        }
+    }
+    public function updateById($id, $data)
+    {
+        try {
+            return Orders::where('id', $id)->update($data);
         } catch (Exception $e) {
             throw new Exception($e);
         }
