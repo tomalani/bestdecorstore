@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 
 class Orders extends Model
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable, Authorizable, CanResetPassword, HasFactory;
 
     public $timestamps = false;
     /**
@@ -25,5 +26,5 @@ class Orders extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['user_id', 'status', 'created_at', 'updated_at'];
 }
