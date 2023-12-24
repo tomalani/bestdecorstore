@@ -9,7 +9,7 @@
             <div class="new-arrival-cart">
                 <p>
                     <span class="lnr lnr-cart"></span>
-                    <a href="#" wire:click="addToCart">add <span>to </span> cart</a>
+                    <a wire:click="addToCart">add <span>to </span> cart</a>
                 </p>
             </div>
         </div>

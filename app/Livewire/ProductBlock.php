@@ -2,10 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Models\ProductModel;
 use Livewire\Component;
 use App\Facades\Cart;
-use Illuminate\Contracts\View\View;
 
 class ProductBlock extends Component
 {

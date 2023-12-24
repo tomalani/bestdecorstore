@@ -172,6 +172,7 @@ nav.navbar.bootsnav ul.nav > li.dropdown span {
 .attr-nav {
     position: relative;
     top:5px;
+    padding: 44px 0;
 }
 .attr-nav > ul > li > a {
     color: #616060;
@@ -966,4 +967,4 @@ span.feature-review {margin-left: 10px;}
     0%   {bottom:0px;}
     100%  {bottom:7px;}
 }
-/*========================Thank you=================
+/*========================Thank you================= */
