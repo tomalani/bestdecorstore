@@ -191,3 +191,47 @@ footer {
 .txt-about-us {
   text-decoration: underline;
 }
+.bages {
+  display: inline-block;
+  padding: 0.55em 0.9em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.45rem;
+}
+.bages.badges-primary {
+  color: #a3017e;
+  background-color: #f883dd;
+}
+.bages.badges-secondary {
+  color: #5974a2;
+  background-color: #e4e8ed;
+}
+.bages.badges-info {
+  color: #08a1c4;
+  background-color: #abe9f7;
+}
+.bages.badges-success {
+  color: #67b108;
+  background-color: #cdf59b;
+}
+.bages.badges-danger {
+  color: #bd0000;
+  background-color: #fc9797;
+}
+.bages.badges-warning {
+  color: #fbc400;
+  background-color: #fef5d3;
+}
+.bages.badges-light {
+  color: #c7d3de;
+  background-color: #fff;
+}
+.bages.badges-dark {
+  color: #1e2e4a;
+  background-color: #8097bf;
+}

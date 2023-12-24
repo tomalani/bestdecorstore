@@ -8,7 +8,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 
-class Orders extends Model
+class OrdersItem extends Model
 {
     use Authenticatable, Authorizable, CanResetPassword, HasFactory;
 
@@ -18,7 +18,7 @@ class Orders extends Model
      *
      * @var string
      */
-    protected $table = 'orders';
+    protected $table = 'oreder_items';
     protected $primaryKey = 'id';
 
     /**
@@ -26,5 +26,5 @@ class Orders extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'order_number', 'status', 'created_at', 'updated_at'];
+    protected $fillable = ['order_id', 'product_id', 'quantity', 'created_at', 'updated_at'];
 }
