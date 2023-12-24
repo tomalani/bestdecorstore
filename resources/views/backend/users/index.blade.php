@@ -47,11 +47,11 @@
                                             <td>
                                                 @if ($obj->role === 0)
                                                     <p class="text-xs font-weight-bold mb-0">
-                                                       Users
+                                                        Users
                                                     </p>
                                                 @else
                                                     <p class="text-xs font-weight-bold mb-0">
-                                                       Admin
+                                                        Admin
                                                     </p>
                                                 @endif
                                             </td>
@@ -64,11 +64,20 @@
                                                     class="text-secondary text-xs font-weight-bold">{{ $obj->updated_at }}</span>
                                             </td>
                                             <td class="align-middle">
-                                                <a href="{{ url('/backend/categories/edit', $obj->id) }}"
-                                                    class="btn btn-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                                    data-original-title="Edit user">
-                                                    Edit
-                                                </a>
+                                                @if ($obj->role == 0)
+                                                    <div class="d-flex align-item-center justify-content-center gap-3">
+                                                        <a href="{{ url('/backend/categories/edit', $obj->id) }}"
+                                                            class="btn btn-secondary font-weight-bold text-xs"
+                                                            data-toggle="tooltip" data-original-title="Edit user" >
+                                                            Edit
+                                                            </a>
+                                                        <a href="{{ url('/backend/categories/edit', $obj->id) }}"
+                                                            class="btn btn-danger font-weight-bold text-xs"
+                                                            data-toggle="tooltip" data-original-title="Edit user" disabled>
+                                                            Delete
+                                                            </a>
+                                                    </div>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -95,4 +104,5 @@
             </div>
         </footer>
     </div>
+    
 @endsection
