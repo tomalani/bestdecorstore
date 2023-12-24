@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-});
+// Route::get('/', function () {
+//     return view('landing');
+// });
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Auth::routes();
@@ -32,7 +33,8 @@ Route::get('/backend/products/edit/{id}', [App\Http\Controllers\ProductsControll
 Route::post('/backend/products/update', [App\Http\Controllers\ProductsController::class, 'update']);
 
 // backend categories
-Route::get('/backend/categories', [App\Http\Controllers\CategoriesController::class, 'index'])->name('backend-categories');;
+Route::get('/backend/categories', [App\Http\Controllers\CategoriesController::class, 'index'])->name('backend-categories');
+;
 Route::get('/backend/categories/add', [App\Http\Controllers\CategoriesController::class, 'add']);
 Route::post('/backend/categories/insert', [App\Http\Controllers\CategoriesController::class, 'insert']);
 Route::get('/backend/categories/edit/{id}', [App\Http\Controllers\CategoriesController::class, 'edit']);
