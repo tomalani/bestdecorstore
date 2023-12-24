@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::add('orders', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id');
-            $table->string('status');
-            $table->timestamps();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('order_number')->after('id'); // Adjust the position as needed
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('order_number');
+        });
     }
 };
