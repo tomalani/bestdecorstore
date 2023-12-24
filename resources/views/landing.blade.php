@@ -186,15 +186,8 @@
 
                     <div class="container">
                         <!-- Start Atribute Navigation -->
-                        <div class="attr-nav">
-                            <ul>
-                                <li class="search">
-                                    <a href="#"><span class="lnr lnr-magnifier"></span></a>
-                                </li><!--/.search-->
-                                <li class="dropdown">
-                                    <livewire:cart-nav />
-                                </li><!--/.dropdown-->
-                            </ul>
+                        <div class="attr-nav">                                
+                            <livewire:cart-nav />
                         </div><!--/.attr-nav-->
                         <!-- End Atribute Navigation -->
 
@@ -309,7 +302,7 @@
                 <div class="row">
                     
                     @foreach ($products as $product)
-                        <livewire:product-block :id="$product->id" />
+                        <livewire:product-block :product="$product" />
                     @endforeach
 
                 </div>
@@ -455,7 +448,6 @@
                     <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top"
                         title="" data-original-title="Back to Top" aria-hidden="true"></i>
                 </div>
-                <livewire:counter />
             </div><!--/.scroll-Top-->
 
     </footer><!--/.footer-->

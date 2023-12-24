@@ -4,24 +4,27 @@ namespace App\Livewire;
 
 use App\Models\ProductModel;
 use Livewire\Component;
+use App\Facades\Cart;
+use Illuminate\Contracts\View\View;
 
 class ProductBlock extends Component
 {
-    public $id;
-    public $product_name;
-    public $price;
+    public $product;
+    public $quantity;
 
-    public function mount($id)
+    public function mount(): void
     {
-        $product = ProductModel::find($id);
-
-        $this->id = $product->id;
-        $this->product_name = $product->product_name;
-        $this->price = $product->price;
+        $this->quantity = 1;
     }
 
     public function render()
     {
         return view('livewire.product-block');
+    }
+
+    public function addToCart(): void
+    {
+        Cart::add($this->product->id, $this->product->product_name, $this->product->price, $this->quantity);
+        $this->dispatch('productAddedToCart');
     }
 }
