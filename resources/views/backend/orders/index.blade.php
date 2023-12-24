@@ -7,15 +7,7 @@
                 <div class="card mb-4">
                     <div class="card-header pb-0">
                         <div class="row align-items-center justify-content-lg-between">
-                            <div class="col-lg-6 mb-lg-0 mb-4">
-                                <h6>Users</h6>
-                            </div>
-
-                            <div class="col-lg-6 mb-lg-0 mb-4 text-end">
-                                <a class="btn btn-primary" href="{{ url('/backend/categories/add') }}">
-                                    Add Users
-                                </a>
-                            </div>
+                            <h6>Orders</h6>
                         </div>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
@@ -23,12 +15,14 @@
                             <table class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            OrderNumber</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Name</th>
+                                            User</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Role</th>
+                                            Status</th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Created At</th>
@@ -39,21 +33,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $key => $obj)
+                                    @foreach ($orders as $key => $obj)
                                         <tr>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $obj->name }}</p>
+                                                <p class="text-xs font-weight-bold mb-0">{{ $obj->category_name }}</p>
                                             </td>
                                             <td>
-                                                @if ($obj->role === 0)
-                                                    <p class="text-xs font-weight-bold mb-0">
-                                                       Users
-                                                    </p>
-                                                @else
-                                                    <p class="text-xs font-weight-bold mb-0">
-                                                       Admin
-                                                    </p>
-                                                @endif
+                                                <p class="text-xs font-weight-bold mb-0">{{ $obj->category_description }}
+                                                </p>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span

@@ -38,5 +38,19 @@ Route::post('/backend/categories/insert', [App\Http\Controllers\CategoriesContro
 Route::get('/backend/categories/edit/{id}', [App\Http\Controllers\CategoriesController::class, 'edit']);
 Route::post('/backend/categories/update', [App\Http\Controllers\CategoriesController::class, 'update']);
 
-// backend users
-Route::get('/backend/users', [App\Http\Controllers\UsersController::class, 'index']);
+// backend user 
+Route::get('/backend/users', [App\Http\Controllers\UsersController::class, 'index'])->name('backend-users');;
+Route::get('/backend/users/add', [App\Http\Controllers\CategoriesController::class, 'add']);
+Route::post('/backend/users/insert', [App\Http\Controllers\CategoriesController::class, 'insert']);
+Route::get('/backend/users/edit/{id}', [App\Http\Controllers\CategoriesController::class, 'edit']);
+Route::get('/backend/users/delete/{id}', [App\Http\Controllers\CategoriesController::class, 'delete']);
+Route::post('/backend/users/update', [App\Http\Controllers\CategoriesController::class, 'update']);
+
+// backend order  
+Route::get('/backend/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('backend-orders');
+Route::get('/backend/orders/add', [App\Http\Controllers\OrderController::class, 'add']);
+Route::post('/backend/orders/insert', [App\Http\Controllers\OrderController::class, 'insert']);
+Route::get('/backend/orders/edit/{id}', [App\Http\Controllers\OrderController::class, 'edit']);
+Route::get('/backend/orders/delete/{id}', [App\Http\Controllers\OrderController::class, 'delete']);
+Route::post('/backend/orders/update', [App\Http\Controllers\OrderController::class, 'update']);
+
