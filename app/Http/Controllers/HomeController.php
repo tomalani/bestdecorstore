@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $product_hightlights = ProductModel::where('id', '<', 4)->take(3)->get();
+        $product_hightlights = ProductModel::where('is_highlight', 1)->take(3)->get();
         $products = ProductModel::where('id', '>', 3)->take(8)->get();
 
         return View::make("landing")->with([

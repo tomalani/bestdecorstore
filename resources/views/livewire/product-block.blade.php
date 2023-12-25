@@ -3,9 +3,11 @@
         <div class="single-new-arrival-bg">
             <img src="{{ url('assets/img/product/'.$product->id.'.jpg') }}" alt="new-arrivals images">
             <div class="single-new-arrival-bg-overlay"></div>
+            @if($product->price_from)
             <div class="sale bg-1">
                 <p>sale</p>
             </div>
+            @endif
             <div class="new-arrival-cart">
                 <p>
                     <span class="lnr lnr-cart"></span>
@@ -15,5 +17,6 @@
         </div>
         <h4><a href="#">{{ $product->product_name }}</a></h4>
         <p class="arrival-product-price">${{ $product->price }}</p>
+        <del>{{ $product->price_from }}</del>
     </div>
 </div>

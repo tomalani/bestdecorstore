@@ -28,7 +28,7 @@
                                         <div class="packages-price">
                                             <p>
                                                 $ {{ $product_hl->price }}
-                                                <del>$ {{ ($product_hl->price*125)/100 }}</del>
+                                                @if($product_hl->price_from) <del>$ {{ $product_hl->price_from }}</del> @endif
                                             </p>
                                         </div>
                                         <button class="btn-cart welcome-add-cart"
