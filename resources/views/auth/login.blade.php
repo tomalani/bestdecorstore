@@ -437,15 +437,16 @@
                 <div class="login-form">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        <input type="email" placeholder="E-mail Address" />
-                        <input type="password" placeholder="Password" />
+                        <input type="email" name="email" placeholder="E-mail Address" />
+                        <input type="password" name="password" placeholder="Password" />
 
                         <div class="remember-form">
-                            <input type="checkbox" />
+                            <input type="checkbox" name="remember" />
                             <span>Remember me</span>
                         </div>
+
                         <div class="forget-pass">
-                            <a href="#">Forgot Password ?</a>
+                            <a href="{{ route('password.request') }}">Forgot Password?</a>
                         </div>
 
                         <button type="submit">LOG-IN</button>
