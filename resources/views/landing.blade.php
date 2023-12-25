@@ -90,7 +90,7 @@
                 <h2>product</h2>
             </div><!--/.section-header-->
             <div class="new-arrivals-content">
-                <div class="row">
+                <div class="row" style="display:flex; flex-wrap: wrap;">
                     
                     @foreach ($products as $product)
                         <livewire:product-block :product="$product" />
