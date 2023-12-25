@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 namespace App\Http\Controllers;
 
+use App\Facades\Cart;
 use App\Http\DataAccess\OrderItemsDataAccess;
 use App\Http\DataAccess\OrdersDataAccess;
 use Illuminate\Http\Request;
@@ -78,5 +79,18 @@ class OrderController extends Controller
 
         $orders = $this->ordersDataAccess->updateById($id, $data);
         return Redirect::to('/backend/orders');
+    }
+
+
+
+
+    // Front-end
+
+    public function cart()
+    {
+        $content = Cart::content();
+        return view('cart.index')->with([
+            'content' => $content,
+        ]);
     }
 }
