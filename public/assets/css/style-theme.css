@@ -1081,5 +1081,18 @@ span.feature-review {margin-left: 10px;}
     background: #43413f;
     color: #FFF;
 }
+.cart-btn-quan {
+    background: #eee;
+    border: 1px solid #ddd;
+    color: #ccc;
+    line-height: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1rem;
+}
 
 /*========================Thank you=================

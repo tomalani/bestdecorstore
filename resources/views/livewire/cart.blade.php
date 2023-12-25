@@ -5,16 +5,16 @@
             <div class="col-md-1">
                 <img src="{{ url('assets/img/product/'.$item['id'].'.jpg')}}" class="cart-img" alt="{{ $item['name'] }}">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <h5>{{ $item['name'] }}</h5>
             </div>
             <div class="col-md-2">
                 $ {{ $item['price'] }}
             </div>
-            <div class="col-md-1">
-                <button class="text-sm p-2 border-2 rounded border-gray-200 hover:border-gray-300 bg-gray-200 hover:bg-gray-300" wire:click="updateCartItem({{ $id }}, 'minus')"> - </button>
+            <div class="col-md-2">
+                <button class="cart-btn-quan" wire:click="updateCartItem({{ $id }}, 'minus')"> - </button>
                 {{ $item->get('quantity') }}
-                <button class="text-sm p-2 border-2 rounded border-gray-200 hover:border-gray-300 bg-gray-200 hover:bg-gray-300" wire:click="updateCartItem({{ $id }}, 'plus')"> + </button>
+                <button class="cart-btn-quan" wire:click="updateCartItem({{ $id }}, 'plus')"> + </button>
             </div>
             <div class="col-md-1 cart-price-total">
                 $ {{ $item['price']*$item->get('quantity') }}
