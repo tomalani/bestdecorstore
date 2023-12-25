@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 //     return view('landing');
 // });
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/cart', [App\Http\Controllers\OrderController::class, 'cart'])->name('cart');
 
 
 Auth::routes();
@@ -34,21 +35,23 @@ Route::middleware(['auth.check'])->group(function () {
     Route::post('/backend/products/update', [App\Http\Controllers\ProductsController::class, 'update']);
 
     // backend categories
-    Route::get('/backend/categories', [App\Http\Controllers\CategoriesController::class, 'index'])->name('backend-categories');;
+    Route::get('/backend/categories', [App\Http\Controllers\CategoriesController::class, 'index'])->name('backend-categories');
+    ;
     Route::get('/backend/categories/add', [App\Http\Controllers\CategoriesController::class, 'add']);
     Route::post('/backend/categories/insert', [App\Http\Controllers\CategoriesController::class, 'insert']);
     Route::get('/backend/categories/edit/{id}', [App\Http\Controllers\CategoriesController::class, 'edit']);
     Route::post('/backend/categories/update', [App\Http\Controllers\CategoriesController::class, 'update']);
 
-    // backend user 
-    Route::get('/backend/users', [App\Http\Controllers\UsersController::class, 'index'])->name('backend-users');;
+    // backend user
+    Route::get('/backend/users', [App\Http\Controllers\UsersController::class, 'index'])->name('backend-users');
+    ;
     Route::get('/backend/users/add', [App\Http\Controllers\CategoriesController::class, 'add']);
     Route::post('/backend/users/insert', [App\Http\Controllers\CategoriesController::class, 'insert']);
     Route::get('/backend/users/edit/{id}', [App\Http\Controllers\CategoriesController::class, 'edit']);
     Route::get('/backend/users/delete/{id}', [App\Http\Controllers\CategoriesController::class, 'delete']);
     Route::post('/backend/users/update', [App\Http\Controllers\CategoriesController::class, 'update']);
 
-    // backend order  
+    // backend order
     Route::get('/backend/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('backend-orders');
     Route::get('/backend/orders/add', [App\Http\Controllers\OrderController::class, 'add']);
     Route::post('/backend/orders/insert', [App\Http\Controllers\OrderController::class, 'insert']);

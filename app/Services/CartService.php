@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Collection;
 use Illuminate\Session\SessionManager;
+use Ramsey\Uuid\Type\Integer;
 
 class CartService
 {
@@ -35,7 +36,7 @@ class CartService
      */
     public function add($id, $name, $price, $quantity, $options = []): void
     {
-        $cartItem = $this->createCartItem($name, $price, $quantity, $options);
+        $cartItem = $this->createCartItem($id, $name, $price, $quantity, $options);
 
         $content = $this->getContent();
 
@@ -153,7 +154,7 @@ class CartService
      * @param array $options
      * @return Illuminate\Support\Collection
      */
-    protected function createCartItem(string $name, string $price, string $quantity, array $options): Collection
+    protected function createCartItem(int $id, string $name, string $price, string $quantity, array $options): Collection
     {
         $price = floatval($price);
         $quantity = intval($quantity);
@@ -163,6 +164,7 @@ class CartService
         }
 
         return collect([
+            'id' => $id,
             'name' => $name,
             'price' => $price,
             'quantity' => $quantity,

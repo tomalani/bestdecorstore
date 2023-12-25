@@ -25,8 +25,7 @@
 
         <li class="total">
             <span>Total: ${{ $total }}</span>
-            <button class="btn-cart pull-right" onclick="window.location.href='#'">view
-                cart</button>
+            <button class="btn-cart pull-right" onclick="window.location.href='{{ route('cart') }}'">view cart</button>
         </li>
 
         @else
