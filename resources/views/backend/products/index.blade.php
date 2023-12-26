@@ -1,6 +1,17 @@
 @extends('layouts.template_backend')
 
 @section('content')
+    <style>
+        .text-pro-wrap {
+            width: 250px;
+            text-wrap: wrap;
+        }
+
+        .text-cat-wrap {
+            width: 500px;
+            text-wrap: wrap;
+        }
+    </style>
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
@@ -45,10 +56,12 @@
                                     @foreach ($products as $key => $obj)
                                         <tr>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $obj->product_name }}</p>
+                                                <p class="text-xs font-weight-bold mb-0 text-pro-wrap">
+                                                    {{ $obj->product_name }}</p>
                                             </td>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $obj->product_description }}</p>
+                                                <p class="text-xs font-weight-bold mb-0 text-cat-wrap">
+                                                    {{ $obj->product_description }}</p>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-xs font-weight-bold">${{ $obj->price }}</span>

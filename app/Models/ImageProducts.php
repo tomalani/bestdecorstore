@@ -17,7 +17,7 @@ class ImageProducts extends Model
      *
      * @var string
      */
-    protected $table = 'products';
+    protected $table = 'image_products';
     protected $primaryKey = 'id';
 
     /**
@@ -25,5 +25,5 @@ class ImageProducts extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['product_id', 'image_name', 'created_at', 'updated_at'];
 }
