@@ -40,7 +40,7 @@ class ProductsController extends Controller
         $price = $request->input('price');
         $product_code = $request->input('product_code');
         $category_id = $request->input('category_id');
-
+        $is_highlight = $request->input('is_highlight');
 
         // check existing
         $e = $this->productsDataAccess->isExistName($product_name);
@@ -58,6 +58,7 @@ class ProductsController extends Controller
             'price' => $price,
             'product_code' => $product_code,
             'category_id' => $category_id,
+            'is_highlight' => $is_highlight,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime()
         ];
@@ -66,6 +67,13 @@ class ProductsController extends Controller
         $result = $this->productsDataAccess->insert($data);
 
         if ($result > 0) { // insert success then return ID
+            $arr_update_img = [];
+            foreach (['image1', 'image2', 'image3', 'image4'] as $imageName) {
+                if ($request->hasFile($imageName)) {
+                    $this->updateProductImg($request->file($imageName), $result);
+                }
+            }
+
             // redirect with message
             return Redirect::to('/backend/products')
                 ->with("messageSuccess", "Successfully")
@@ -76,6 +84,35 @@ class ProductsController extends Controller
                 ->with("messageFail", "Failed")
                 ->with("messageDetail", 'Create Failed');
         }
+    }
+    public function updateProductImg($file, $result)
+    {
+        $findImageProduct = $this->productsDataAccess->getImageProductByProductId($result);
+        // Other update logic
+        $image = $file;
+        $id = $result;
+        $timestamp = now()->timestamp;
+        $randomDigits = mt_rand(10, 99);
+        $imageName = "{$id}_{$timestamp}{$randomDigits}.{$image->getClientOriginalExtension()}";
+        $imagePath = $image->storeAs('products', $imageName, 'public');
+
+        if ($findImageProduct > 0) {
+            $imageName = $result;
+        }
+
+        $data = [
+            'product_id' => $result,
+            'image_name' => $imageName,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime()
+        ];
+
+        $result = $this->productsDataAccess->insertImageProducts($result, $data);
+
+        // redirect with message
+        return Redirect::to('/backend/products')
+            ->with("messageSuccess", "Successfully")
+            ->with("messageDetail", 'Create Successfully');
     }
     public function edit($id)
     {
