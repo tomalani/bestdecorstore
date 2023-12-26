@@ -37,7 +37,7 @@ class ProductsDataAccess
     {
         return Products::where('id', '=', $id)->update($data);
     }
-    public function updateImageProduc($id, $data)
+    public function updateImageProduct($id, $data)
     {
         return ImageProducts::where('id', '=', $id)->update($data);
     }

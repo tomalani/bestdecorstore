@@ -175,7 +175,6 @@
             </div>
         </div>
 
-        // confrim order
         <div class="modal fade" id="confirm_order_table" tabindex="-1" role="dialog" aria-labelledby="confirm_order"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -229,7 +228,6 @@
             </div>
         </div>
 
-        // confrim shipped
         <div class="modal fade" id="shipped_order_table" tabindex="-1" role="dialog" aria-labelledby="confirm_order"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -256,7 +254,6 @@
             </div>
         </div>
 
-        // confrim delivery
         <div class="modal fade" id="delivery_order_table" tabindex="-1" role="dialog" aria-labelledby="confirm_order"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
