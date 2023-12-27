@@ -5,7 +5,7 @@
             <div class="col-md-1">
                 <img src="{{ url('assets/img/product/'.$item['id'].'.jpg')}}" class="cart-img" alt="{{ $item['name'] }}">
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <h5>{{ $item['name'] }}</h5>
             </div>
             <div class="col-md-2">
@@ -16,7 +16,7 @@
                 {{ $item->get('quantity') }}
                 <button class="cart-btn-quan" wire:click="updateCartItem({{ $id }}, 'plus')"> + </button>
             </div>
-            <div class="col-md-1 cart-price-total">
+            <div class="col-md-2 cart-price-total">
                 $ {{ $item['price']*$item->get('quantity') }}
             </div>
             <div class="col-md-1">
@@ -33,7 +33,7 @@
                     <p>Total $ {{ $total }}</p>
                 </div>
                 <div class="col-md-2">
-                    <button class="btn-cart welcome-add-cart animated fadeInDown">Checkout</button>
+                    <button class="btn-cart welcome-add-cart animated fadeInDown" onclick="window.location.href='{{ route('checkout') }}';">Checkout</button>
                 </div>
             </div>
         </div>

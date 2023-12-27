@@ -285,5 +285,5 @@
     <script src="{{ url('assets/js/custom.js') }}"></script>
     
     
-    
+    @yield('scripts')
     </html>
