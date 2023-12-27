@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/cart', [App\Http\Controllers\OrderController::class, 'cart'])->name('cart');
 Route::get('/checkout', [App\Http\Controllers\OrderController::class, 'checkout'])->name('checkout');
-Route::get('/order-save', [App\Http\Controllers\OrderController::class, 'orderSave'])->name('order-save');
+Route::post('/order-save', [App\Http\Controllers\OrderController::class, 'orderSave'])->name('order-save');
 
 
 Auth::routes();

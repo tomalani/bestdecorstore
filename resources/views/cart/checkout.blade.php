@@ -22,66 +22,67 @@
 
                 <div class="row">
                     <div class="col-sm-6">
-                        <form action="{{ route('order-save') }}" method="post">
+                        <form id="form-checkout">
+                            @csrf
                         <div class="row">
                             <h2>Billing details</h2>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="firstname" class="form-label">First name <span>*</span></label>
-                                <input type="text" class="form-control" id="firstname" placeholder="">
+                                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="">
                             </div>
                             <div class="col-sm-6">
                                 <label for="lastname" class="form-label">Last name <span>*</span></label>
-                                <input type="text" class="form-control" id="lastname" placeholder="">
+                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="">
                             </div>
                         </div>
                         <div class="row mt-20px">
                             <div class="col-sm-12">
                                 <label for="country_selector" class="form-label">Country / Region <span>*</span></label>
-                                <input id="country_selector" type="text" class="form-control w-100">
+                                <input id="country_selector" name="country_selector" type="text" class="form-control w-100">
                             </div>
                         </div>
                         <div class="row mt-20px">
                             <div class="col-sm-12">
                                 <label for="address" class="form-label">Street address <span>*</span></label>
-                                <input type="text" class="form-control" id="address" placeholder="House number and street name">
-                                <input type="text" class="form-control mt-10px" id="address2" placeholder="Apartment, suite, unit, etc. (optional)">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="House number and street name">
+                                <input type="text" class="form-control mt-10px" id="address2" name="address2" placeholder="Apartment, suite, unit, etc. (optional)">
                             </div>
                         </div>
                         <div class="row mt-20px">
                             <div class="col-sm-12">
                                 <label for="city" class="form-label">Town/City <span>*</span></label>
-                                <input type="text" class="form-control" id="city" placeholder="">
+                                <input type="text" class="form-control" id="city" name="city" placeholder="">
                             </div>
                         </div>
                         <div class="row mt-20px">
                             <div class="col-sm-12">
                                 <label for="state" class="form-label">State <span>*</span></label>
-                                <input type="text" class="form-control" id="state" placeholder="">
+                                <input type="text" class="form-control" id="state" name="state" placeholder="">
                             </div>
                         </div>
                         <div class="row mt-20px">
                             <div class="col-sm-12">
                                 <label for="zipcode" class="form-label">Postcode/ZIP <span>*</span></label>
-                                <input type="text" class="form-control" id="zipcode" placeholder="">
+                                <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="">
                             </div>
                         </div>
                         <div class="row mt-20px">
                             <div class="col-sm-12">
                                 <label for="email" class="form-label">Email address <span>*</span></label>
-                                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
                             </div>
                         </div>
                         <div class="row mt-20px">
                             <div class="col-sm-12">
                                 <label for="phone" class="form-label">Phone </label>
-                                <input type="text" class="form-control" id="phone" placeholder="">
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="">
                             </div>
                         </div>
                         <div class="row mt-20px">
                             <div class="col-sm-12">
-                                <button class="btn-cart welcome-add-cart animated fadeInDown" type="submit">Place order</button>
+                                <button class="btn-cart welcome-add-cart animated fadeInDown" type="button" id="btn-submit">Place order</button>
                             </div>
                         </div>
                     </form>
@@ -129,5 +130,46 @@
                 defaultCountry:"us",
                 defaultStyling:"inside"
             });
+
+            function initAjaxSetupToken() {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+            }
+
+            $('#btn-submit').on('click', function(e) {
+            // handle bomb click
+            e.preventDefault();
+            // alertLoading("Loading")
+
+            // form data
+            const form = $('#form-checkout')[0];
+            const formData = new FormData(form);
+
+            url = '{{ route('order-save') }}'
+            
+            // set up ajax
+            initAjaxSetupToken();
+
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                    if(res.status == 'Success') {
+                        alert('success!!')
+                    } else {
+                        // logAjaxError(xhr, status, error);
+                        alert('Please fill in form.');
+                    }
+                }
+            })
+
+    });
         </script>
 @endsection

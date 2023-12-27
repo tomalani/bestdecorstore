@@ -10,7 +10,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Users extends Model
 {
-    use Authenticatable, Authorizable, CanResetPassword, HasFactory;
+    use Authenticatable;
+    use Authorizable;
+    use CanResetPassword;
+    use HasFactory;
     public $timestamps = false;
     /**
      * The database table used by the model.
@@ -25,5 +28,5 @@ class Users extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'phone', 'address', 'address2', 'city', 'country', 'zipcode', 'role'];
+    protected $fillable = ['name', 'email', 'password', 'phone', 'address', 'address2', 'city', 'state', 'country', 'zipcode', 'role'];
 }

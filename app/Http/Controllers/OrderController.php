@@ -7,6 +7,9 @@ namespace App\Http\Controllers;
 use App\Facades\Cart;
 use App\Http\DataAccess\OrderItemsDataAccess;
 use App\Http\DataAccess\OrdersDataAccess;
+use App\Models\Orders;
+use App\Models\OrdersItem;
+use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -101,5 +104,51 @@ class OrderController extends Controller
             'content' => $content,
             'total' => $total
         ]);
+    }
+
+    public function orderSave(Request $request)
+    {
+        $content = Cart::content();
+        $total = Cart::total();
+        // dd($content);
+        // dd($request->all());
+        $user_insert = Users::insertGetId([
+            'name' => $request->firstname . ' ' . $request->lastname,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'address2' => $request->address2,
+            'city' => $request->city,
+            'state' => $request->state,
+            'country' => $request->country_selector,
+            'zipcode' => $request->zipcode,
+            'role' => 0,
+            'created_at' => \Carbon\Carbon::now(),
+        ]);
+        $order_insert = Orders::insertGetId([
+            'user_id' => $user_insert,
+            'status' => 0,
+            'created_at' => \Carbon\Carbon::now(),
+        ]);
+        foreach($content as $key => $item) {
+            OrdersItem::insert([
+                'order_id' => $order_insert,
+                'product_id' => $key,
+                'quantity' => $item['quantity'],
+                'created_at' => \Carbon\Carbon::now(),
+            ]);
+        }
+        if ($order_insert) { // insert success then return ID
+            // redirect with message
+            return response()->json([
+                'status' => "Success",
+                'message' => "Updated successfully"
+            ]);
+        } else { // insert fail
+            return response()->json([
+                'status' => "Fail",
+                'message' => "Updated fail"
+            ]);
+        }
     }
 }

@@ -10,7 +10,10 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 
 class OrdersItem extends Model
 {
-    use Authenticatable, Authorizable, CanResetPassword, HasFactory;
+    use Authenticatable;
+    use Authorizable;
+    use CanResetPassword;
+    use HasFactory;
 
     public $timestamps = false;
     /**
@@ -18,7 +21,7 @@ class OrdersItem extends Model
      *
      * @var string
      */
-    protected $table = 'oreder_items';
+    protected $table = 'order_items';
     protected $primaryKey = 'id';
 
     /**

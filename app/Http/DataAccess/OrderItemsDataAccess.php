@@ -11,8 +11,8 @@ class OrderItemsDataAccess
     public function getItemByOrderId($id)
     {
         try {
-            return OrdersItem::leftJoin('products', 'products.id', '=', 'oreder_items.product_id')
-                ->where('oreder_items.order_id', '=', $id)
+            return OrdersItem::leftJoin('products', 'products.id', '=', 'order_items.product_id')
+                ->where('order_items.order_id', '=', $id)
                 ->get();
         } catch (Exception $e) {
             throw new Exception($e);
