@@ -2,15 +2,16 @@
 
 @section('content')
     <style>
-        .text-pro-wrap {
+        .text-pro-wrap,
+        .text-cat-wrap {
             width: 250px;
             text-wrap: wrap;
         }
 
-        .text-cat-wrap {
-            width: 500px;
-            text-wrap: wrap;
-        }
+        /* .text-cat-wrap {
+                width: 500px;
+                text-wrap: wrap;
+            } */
     </style>
     <div class="container-fluid py-4">
         <div class="row">

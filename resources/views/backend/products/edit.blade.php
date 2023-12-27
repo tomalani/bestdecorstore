@@ -25,6 +25,10 @@
                 <input class="form-control" value="{{ $products->price }}" type="text" id="price" name="price">
             </div>
             <div class="form-group">
+                <label for="price">Promo Price</label>
+                <input class="form-control" value="{{ $products->promo_price }}" type="text" id="promo_price" name="promo_price">
+            </div>
+            <div class="form-group">
                 <label for="category" class="form-control-label">Category</label>
                 <select class="form-control" id="category" name="category_id">
                     @foreach ($categories as $item)
