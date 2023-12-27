@@ -85,12 +85,21 @@ class OrderController extends Controller
 
 
     // Front-end
-
     public function cart()
     {
         $content = Cart::content();
         return view('cart.index')->with([
             'content' => $content,
+        ]);
+    }
+
+    public function checkout()
+    {
+        $content = Cart::content();
+        $total = Cart::total();
+        return view('cart.checkout')->with([
+            'content' => $content,
+            'total' => $total
         ]);
     }
 }

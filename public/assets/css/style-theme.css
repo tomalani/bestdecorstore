@@ -1095,4 +1095,63 @@ span.feature-review {margin-left: 10px;}
     margin: 0 1rem;
 }
 
+.mt-20px {
+    margin-top: 20px;
+}
+.mt-10px {
+    margin-top: 10px;
+}
+.checkout label {
+    font-weight: 500;
+    color: #666;
+}
+.checkout input.form-control {
+    padding: 10px;
+    height: inherit;
+    font-size: 1.6rem;
+}
+.checkout ::placeholder {
+    opacity: 0.4;
+}
+.checkout h2 {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    font-weight: 400;
+    margin-left: 1rem;
+    color: #888;
+}
+.w-100 {
+    width: 100%;
+}
+.country-select.inside {
+    width: 100%;
+}
+
+.checkout .row span {
+    color: rgb(224, 0, 0);
+}
+
+.checkout-order {
+    color: #666;
+}
+.checkout-order .text-orange {
+    color: #E99C2D;
+}
+.checkout-order .quan {
+    font-size: 14px;
+}
+.checkout-order .order.first {
+    border-top: none;
+}
+.checkout-order .order {
+    border-top: 1px solid #eee;
+    padding-top: 1.4rem;
+
+}
+.checkout-order .total {
+    font-weight: 500;
+    font-size: 18px;
+    border-top: 2px solid #ddd;
+    padding-top: 1rem;
+}
 /*========================Thank you=================
