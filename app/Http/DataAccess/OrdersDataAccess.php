@@ -11,7 +11,7 @@ class OrdersDataAccess
     public function getAll()
     {
         try {
-            return Orders::select('orders.*', 'users.name', 'users.id as user_id', 'users.name')
+            return Orders::select('orders.*', 'users.name', 'users.id as user_id', 'users.name' ,'users.phone as user_phone','users.address')
                 ->join('users', 'users.id', '=', 'orders.user_id')
                 ->get();
         } catch (Exception $e) {

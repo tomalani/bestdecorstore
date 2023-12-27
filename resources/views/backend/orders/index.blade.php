@@ -122,6 +122,8 @@
                                                     <div class="d-flex align-item-center justify-content-center gap-3">
                                                         <a data-id="{{ $obj->id }}"
                                                             data-customer-name="{{ $obj->name }}"
+                                                            data-customer-tel="{{$obj->user_phone}}"
+                                                            data-customer-address="{{$obj->address}}"
                                                             class="btn btn-success font-weight-bold text-xs confirm-orders"
                                                             data-toggle="tooltip" data-original-title="Edit user">
                                                             Confrim
@@ -177,7 +179,7 @@
 
         <div class="modal fade" id="confirm_order_table" tabindex="-1" role="dialog" aria-labelledby="confirm_order"
             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Confirm Order</h5>
@@ -186,8 +188,14 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div>
-                            <h4 class="customer-name-con"></h4>
+                        <div class="d-flex align-items-center justify-content-start gap-2">
+                            Customer Name : <span class="customer-name-con"></h4>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start gap-2">
+                            Phone : <span class="customer-phone-con"></h4>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start gap-2">
+                            Address : <span class="customer-address-con"></h4>
                         </div>
                     </div>
                     <form action="{{ url('backend/orders/confirm-order') }}" method="POST">
@@ -308,6 +316,8 @@
                 // Get the data-id attribute of the clicked element
                 const orderId = $(this).attr('data-id');
                 const customName = $(this).attr('data-customer-name')
+                const customPhone = $(this).attr('data-customer-tel')
+                const customAddress = $(this).attr('data-customer-address')
                 // Make an AJAX request
                 $.ajax({
                     url: '/backend/ajax-orders-item', // Replace with your actual API endpoint
@@ -360,6 +370,8 @@
                         $('.confirm-group-btn').html(groupBtn)
                         $('#tr-confirm').html(dataRow.join('') + tr_sum);
                         $(".customer-name-con").html(customName)
+                        $(".customer-phone-con").html(customPhone)
+                        $(".customer-address-con").html(customAddress)
                         $("#order-id-confirm").val(orderId)
                         // Show modal
                         $('#confirm_order_table').modal('show');

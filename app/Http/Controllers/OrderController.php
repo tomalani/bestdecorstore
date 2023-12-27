@@ -127,7 +127,8 @@ class OrderController extends Controller
         ]);
         $order_insert = Orders::insertGetId([
             'user_id' => $user_insert,
-            'status' => 0,
+            'status' => 1,
+            'order_number' => now()->format('YmdHis') . mt_rand(10, 99),
             'created_at' => \Carbon\Carbon::now(),
         ]);
         foreach($content as $key => $item) {
