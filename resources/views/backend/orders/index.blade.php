@@ -97,7 +97,8 @@
                                                 </p>
                                             </td>
                                             <td class="align-middle text-center">
-                                                @if ($obj->status == 1)
+                                                <span class="brap badges-primary">Order</span>
+                                                {{-- @if ($obj->status == 1)
                                                     <span class="brap badges-primary">Order</span>
                                                 @elseif($obj->status == 2)
                                                     <span class="brap badges-warning">Prepare</span>
@@ -106,8 +107,8 @@
                                                 @elseif($obj->status == 4)
                                                     <span class="brap badges-success">Delivered</span>
                                                 @elseif($obj->status == 0)
-                                                    <span class="brap badges-danger">Cancle</span>
-                                                @endif
+                                                    <span class="brap badges-danger">Cancel</span>
+                                                @endif --}}
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span

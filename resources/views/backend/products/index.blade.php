@@ -15,9 +15,9 @@
         }
 
         /* .text-cat-wrap {
-                                    width: 500px;
-                                    text-wrap: wrap;
-                                } */
+                                                            width: 500px;
+                                                            text-wrap: wrap;
+                                                        } */
     </style>
     <div class="container-fluid py-4">
         <div class="row">
@@ -69,8 +69,13 @@
                                         <tr>
                                             <td>
                                                 <div class="warp-img-table ">
-                                                    <img src="{{ url('assets/img/product/' . $obj->id . '.png') }}"
-                                                        alt="slider image">
+                                                    @if ($key >= 3)
+                                                        <img src="{{ url('assets/img/product/' . $obj->id . '.jpg') }}"
+                                                            alt="slider image">
+                                                    @else
+                                                        <img src="{{ url('assets/img/product/' . $obj->id . '.png') }}"
+                                                            alt="slider image">
+                                                    @endif
                                                 </div>
 
                                             </td>
