@@ -97,7 +97,7 @@ class ProductsController extends Controller
         $imageName = "{$id}_{$timestamp}{$randomDigits}.{$image->getClientOriginalExtension()}";
         $imagePath = $image->storeAs('products', $imageName, 'public');
 
-        if ($findImageProduct > 0) {
+        if ($findImageProduct == 0) {
             $imageName = $result;
         }
 
@@ -108,7 +108,7 @@ class ProductsController extends Controller
             'updated_at' => new DateTime()
         ];
 
-        $result = $this->productsDataAccess->insertImageProducts($result, $data);
+        $result = $this->productsDataAccess->insertImageProducts($data);
 
         // redirect with message
         return Redirect::to('/backend/products')

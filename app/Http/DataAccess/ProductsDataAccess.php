@@ -11,7 +11,7 @@ class ProductsDataAccess
 {
     public function getAll()
     {
-        return Products::select('products.*','categories.category_name')->leftJoin('categories', 'categories.id', '=', 'products.category_id')->get();
+        return Products::select('products.*', 'categories.category_name')->leftJoin('categories', 'categories.id', '=', 'products.category_id')->get();
     }
     public function isExistName($name)
     {
@@ -23,7 +23,8 @@ class ProductsDataAccess
     }
     public function insertImageProducts($data)
     {
-        return ImageProducts::insertGetId($data);
+        return ImageProducts::insertGetId($data
+        );
     }
     public function getById($id)
     {
