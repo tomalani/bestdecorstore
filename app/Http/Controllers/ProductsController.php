@@ -176,14 +176,14 @@ class ProductsController extends Controller
         $category_id = $request->input('category_id');
         $price_full = $request->input('price_full');
 
-        // check existing
-        $e = $this->productsDataAccess->isExistName($product_name);
-        if ($e > 0) {
-            return Redirect::to("/backend/products/edit")
-                ->withInput()
-                ->with("messageFail", "Fail")
-                ->with("messageDetail", 'Name already exist');
-        }
+        // // check existing
+        // $e = $this->productsDataAccess->isExistName($product_name);
+        // if ($e > 0) {
+        //     return Redirect::to("/backend/products/edit")
+        //         ->withInput()
+        //         ->with("messageFail", "Fail")
+        //         ->with("messageDetail", 'Name already exist');
+        // }
 
         // prepared data
         $data = [
