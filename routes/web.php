@@ -25,7 +25,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/cart', [App\Http\Controllers\OrderController::class, 'cart'])->name('cart');
 Route::get('/checkout', [App\Http\Controllers\OrderController::class, 'checkout'])->name('checkout');
 Route::post('/order-save', [App\Http\Controllers\OrderController::class, 'orderSave'])->name('order-save');
-
+Route::get('/order-success', [App\Http\Controllers\OrderController::class, 'orderSuccess'])->name('order-success');
 
 Auth::routes();
 Route::middleware(['auth.check'])->group(function () {

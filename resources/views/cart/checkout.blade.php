@@ -124,6 +124,8 @@
 @section('scripts')
         <link rel="stylesheet" href="{{ url('assets/country/css/countrySelect.min.css') }}">
         <script src="{{ url('assets/country/js/countrySelect.min.js') }}"></script>
+        <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
 
         <script>
             $("#country_selector").countrySelect({
@@ -162,7 +164,16 @@
                 contentType: false,
                 success: function(res) {
                     if(res.status == 'Success') {
-                        alert('success!!')
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thank you for your order',
+                            text: 'Your order has been placed successfully',
+                            customClass: {
+                                confirmButton: 'btn-sw-ok'
+                            }
+                        }).then(function() {
+                            window.location = '{{ route('order-success') }}';
+                        });
                     } else {
                         // logAjaxError(xhr, status, error);
                         alert('Please fill in form.');

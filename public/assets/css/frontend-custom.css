@@ -1,0 +1,16 @@
+.swal2-container .swal2-popup {
+    font-size: 1.5rem !important;
+    border: 12px solid #f7e2c1;
+  }
+.swal2-container .swal2-popup .btn-sw-ok {
+    background: #E99C2D;
+    border: 1px solid #e99c2e;
+    color: #FFF;
+    padding: 12px 46px;
+    margin: 2rem;
+    border-radius: 2px;
+    transition: 0.3s linear;
+}
+.swal2-container .swal2-popup .btn-sw-ok:focus {
+    box-shadow: none;
+}

@@ -152,4 +152,10 @@ class OrderController extends Controller
             ]);
         }
     }
+
+    public function orderSuccess()
+    {
+        Cart::clear();
+        return redirect()->route('home');
+    }
 }

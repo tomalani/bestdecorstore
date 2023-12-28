@@ -58,6 +58,8 @@
     
         <!--responsive.css-->
         <link rel="stylesheet" href="{{ url('assets/css/theme-responsive.css') }}">
+
+        <link id="pagestyle" href="{{ url('assets/css/frontend-custom.css') }}" rel="stylesheet" />
     </head>
     
     <body>
