@@ -8,10 +8,16 @@
             text-wrap: wrap;
         }
 
+        .warp-img-table img {
+            height: 150px;
+            width: 150px;
+            object-fit: contain;
+        }
+
         /* .text-cat-wrap {
-                width: 500px;
-                text-wrap: wrap;
-            } */
+                                    width: 500px;
+                                    text-wrap: wrap;
+                                } */
     </style>
     <div class="container-fluid py-4">
         <div class="row">
@@ -37,10 +43,15 @@
                                     <tr>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Product Name</th>
+                                            >
+                                            Product Image
+                                        </th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Description</th>
+                                            Product Name</th>
+                                        {{-- <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Description</th> --}}
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Price</th>
@@ -57,13 +68,20 @@
                                     @foreach ($products as $key => $obj)
                                         <tr>
                                             <td>
+                                                <div class="warp-img-table ">
+                                                    <img src="{{ url('assets/img/product/' . $obj->id . '.png') }}"
+                                                        alt="slider image">
+                                                </div>
+
+                                            </td>
+                                            <td>
                                                 <p class="text-xs font-weight-bold mb-0 text-pro-wrap">
                                                     {{ $obj->product_name }}</p>
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 <p class="text-xs font-weight-bold mb-0 text-cat-wrap">
                                                     {{ $obj->product_description }}</p>
-                                            </td>
+                                            </td> --}}
                                             <td class="align-middle text-center">
                                                 <span class="text-xs font-weight-bold">${{ $obj->price }}</span>
                                             </td>

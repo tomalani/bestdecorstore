@@ -11,7 +11,7 @@ class ProductsDataAccess
 {
     public function getAll()
     {
-        return Products::leftJoin('categories', 'categories.id', '=', 'products.category_id')->get();
+        return Products::select('products.*','categories.category_name')->leftJoin('categories', 'categories.id', '=', 'products.category_id')->get();
     }
     public function isExistName($name)
     {

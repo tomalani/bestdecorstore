@@ -118,12 +118,22 @@
                                                     class="text-secondary text-xs font-weight-bold">{{ $obj->updated_at }}</span>
                                             </td>
                                             <td class="align-middle">
-                                                @if ($obj->status == 1)
+                                                <div class="d-flex align-item-center justify-content-center gap-3">
+                                                    <a data-id="{{ $obj->id }}"
+                                                        data-customer-name="{{ $obj->name }}"
+                                                        data-customer-tel="{{ $obj->user_phone }}"
+                                                        data-customer-address="{{ $obj->address }}"
+                                                        class="btn btn-success font-weight-bold text-xs confirm-orders"
+                                                        data-toggle="tooltip" data-original-title="View">
+                                                        View
+                                                    </a>
+                                                </div>
+                                                {{-- @if ($obj->status == 1)
                                                     <div class="d-flex align-item-center justify-content-center gap-3">
                                                         <a data-id="{{ $obj->id }}"
                                                             data-customer-name="{{ $obj->name }}"
-                                                            data-customer-tel="{{$obj->user_phone}}"
-                                                            data-customer-address="{{$obj->address}}"
+                                                            data-customer-tel="{{ $obj->user_phone }}"
+                                                            data-customer-address="{{ $obj->address }}"
                                                             class="btn btn-success font-weight-bold text-xs confirm-orders"
                                                             data-toggle="tooltip" data-original-title="Edit user">
                                                             Confrim
@@ -165,7 +175,7 @@
                                                             Cancle
                                                             </a>
                                                     </div>
-                                                @endif
+                                                @endif --}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -182,7 +192,8 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Confirm Order</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Details Order</h5>
+                        {{-- <h5 class="modal-title" id="exampleModalLabel">Confirm Order</h5> --}}
                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -229,7 +240,7 @@
                             </div>
                         </div>
                         <div class="modal-footer confirm-group-btn">
-
+                            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</a>
                         </div>
                     </form>
                 </div>
@@ -367,7 +378,7 @@
                         const groupBtn = `<a href="${window.location.origin}/backend/orders/reject-order/${orderId}" class="btn bg-gradient-danger" >Reject</a>
                   <button type="submit" class="btn bg-gradient-primary" id="confirmButton">Confirm</button>`;
 
-                        $('.confirm-group-btn').html(groupBtn)
+                        // $('.confirm-group-btn').html(groupBtn)
                         $('#tr-confirm').html(dataRow.join('') + tr_sum);
                         $(".customer-name-con").html(customName)
                         $(".customer-phone-con").html(customPhone)
