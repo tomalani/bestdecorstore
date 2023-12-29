@@ -124,6 +124,12 @@
                                                         data-customer-name="{{ $obj->name }}"
                                                         data-customer-tel="{{ $obj->user_phone }}"
                                                         data-customer-address="{{ $obj->address }}"
+                                                        data-customer-address2="{{ $obj->address2 }}"
+                                                        data-customer-city="{{ $obj->city }}"
+                                                        data-customer-state="{{ $obj->state }}"
+                                                        data-customer-postal ="{{ $obj->zipcode }}"
+                                                        data-customer-country ="{{ $obj->country }}"
+                                                        data-customer-email ="{{ $obj->email }}"
                                                         class="btn btn-success font-weight-bold text-xs confirm-orders"
                                                         data-toggle="tooltip" data-original-title="View">
                                                         View
@@ -208,6 +214,24 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-start gap-2">
                             Address : <span class="customer-address-con"></h4>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start gap-2">
+                            Address2 : <span class="customer-address2-con"></h4>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start gap-2">
+                            City : <span class="customer-city-con"></h4>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start gap-2">
+                            State/Province : <span class="customer-state-con"></h4>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start gap-2">
+                            Zip/Postal Code : <span class="customer-postal-con"></h4>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start gap-2">
+                            Country : <span class="customer-country-con"></h4>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start gap-2">
+                            Email : <span class="customer-email-con"></h4>
                         </div>
                     </div>
                     <form action="{{ url('backend/orders/confirm-order') }}" method="POST">
@@ -330,6 +354,12 @@
                 const customName = $(this).attr('data-customer-name')
                 const customPhone = $(this).attr('data-customer-tel')
                 const customAddress = $(this).attr('data-customer-address')
+                const customAddress2 = $(this).attr('data-customer-address2')
+                const customCity = $(this).attr('data-customer-city')
+                const customsState = $(this).attr('data-customer-state')
+                const customPostal = $(this).attr('data-customer-postal')
+                const customCountry = $(this).attr('data-customer-country')
+                const customEmail = $(this).attr('data-customer-email')
                 // Make an AJAX request
                 $.ajax({
                     url: '/backend/ajax-orders-item', // Replace with your actual API endpoint
@@ -384,6 +414,12 @@
                         $(".customer-name-con").html(customName)
                         $(".customer-phone-con").html(customPhone)
                         $(".customer-address-con").html(customAddress)
+                        $(".customer-address2-con").html(customAddress2)
+                        $(".customer-city-con").html(customCity)
+                        $(".customer-state-con").html(customsState)
+                        $(".customer-postal-con").html(customPostal)
+                        $(".customer-country-con").html(customCountry)
+                        $(".customer-email-con").html(customEmail)
                         $("#order-id-confirm").val(orderId)
                         // Show modal
                         $('#confirm_order_table').modal('show');
