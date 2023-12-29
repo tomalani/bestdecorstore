@@ -41,7 +41,7 @@ class ProductsController extends Controller
         $product_code = $request->input('product_code');
         $category_id = $request->input('category_id');
         $is_highlight = $request->input('is_highlight');
-        $price_full = $request->input('price_full');
+        $price_from = $request->input('price_from');
 
         // check existing
         $e = $this->productsDataAccess->isExistName($product_name);
@@ -60,7 +60,7 @@ class ProductsController extends Controller
             'product_code' => $product_code,
             'category_id' => $category_id,
             'is_highlight' => $is_highlight,
-            'price_full' => $price_full,
+            'price_from' => $price_from,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime()
         ];
@@ -174,7 +174,7 @@ class ProductsController extends Controller
         $price = $request->input('price');
         $product_code = $request->input('product_code');
         $category_id = $request->input('category_id');
-        $price_full = $request->input('price_full');
+        $price_from = $request->input('price_from');
 
         // // check existing
         // $e = $this->productsDataAccess->isExistName($product_name);
@@ -192,7 +192,7 @@ class ProductsController extends Controller
             'price' => $price,
             'product_code' => $product_code,
             'category_id' => $category_id,
-            'price_full' => $price_full,
+            'price_from' => $price_from,
             'updated_at' => new DateTime()
         ];
 

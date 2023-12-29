@@ -21,8 +21,8 @@
                 <input class="form-control" type="text" id="price" name="price">
             </div>
             <div class="form-group">
-                <label for="price_full">Promo Price</label>
-                <input class="form-control" type="text" id="price_full" name="price_full">
+                <label for="price_from">Promo Price</label>
+                <input class="form-control" type="text" id="price_from" name="price_from">
             </div>
             <div class="form-group">
                 <label for="category" class="form-control-label">Category</label>

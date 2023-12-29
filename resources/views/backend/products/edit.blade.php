@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label for="price_full">Promo Price</label>
-                <input class="form-control" value="{{ $products->price_full }}" type="text" id="price_full" name="price_full">
+                <input class="form-control" value="{{ $products->price_from }}" type="text" id="price_from" name="price_from">
             </div>
             <div class="form-group">
                 <label for="category" class="form-control-label">Category</label>
