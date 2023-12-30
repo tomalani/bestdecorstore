@@ -1,9 +1,9 @@
 <div>
 <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <button class="dropdown-toggle" data-toggle="dropdown">
         <span class="lnr lnr-cart"></span>
         <span class="badge badge-bg-1">{{ $content->count() }}</span>
-    </a>
+    </button>
     <ul class="dropdown-menu cart-list s-cate">
 
         @if ($content->count() > 0)
@@ -17,7 +17,9 @@
                 <p>{{ $item->get('quantity') }} x  <span class="price">${{ $item->get('price') }}</span></p>
             </div><!--/.cart-list-txt-->
             <div class="cart-close">
-                <span class="lnr lnr-cross" wire:click="removeFromCart({{ $id }})"></span>
+                <span class="lnr lnr-cross" wire:click="removeFromCart({{ $id }})">
+                    <img src="{{ url('assets/img/bin.svg') }}" alt="" class="bin">
+                </span>
             </div><!--/.cart-close-->
         </li><!--/.single-cart-list -->
 

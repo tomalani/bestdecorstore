@@ -172,7 +172,7 @@
     <!--sofa-collection end -->
 
     <!--newsletter strat -->
-    <section id="newsletter" class="newsletter">
+    {{-- <section id="newsletter" class="newsletter">
         <div class="container">
             <div class="hm-footer-details">
                 <div class="row">
@@ -245,7 +245,7 @@
         </div><!--/.container-->
 
     </section><!--/newsletter-->
-    <!--newsletter end -->
+    <!--newsletter end --> --}}
 
     <!--footer start-->
     <footer id="footer" class="footer">

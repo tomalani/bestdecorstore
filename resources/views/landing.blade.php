@@ -54,7 +54,7 @@
                                                 <h4>Sales Start from <span>$99.00</span></h4>
                                             </div>
                                             <button class="btn-cart welcome-add-cart populer-products-btn"
-                                                onclick="window.location.href='#'">
+                                                onclick="window.location.href='{{ route('shop') }}'">
                                                 discover more
                                             </button>
                                         </div>

@@ -257,7 +257,8 @@ nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li > a {
 
 /*.cart-list*/
 ul.dropdown-menu.cart-list {
-    height: 232px;
+    height: 400px;
+    width: 420px !important;
     overflow-y: scroll;
     border-radius: 3px;
 }
@@ -290,6 +291,7 @@ ul.cart-list > li:last-child{border-bottom: 0;}
 }
 .cart-list-txt h6 {
     font-size: 14px;
+    width: 80%;
 }
 .cart-list-txt p {
     font-size: 12px;
@@ -305,6 +307,13 @@ ul.cart-list > li .price {font-weight: 300;}
     top: 10px;
     right: 14px;
     cursor: pointer;
+}
+.cart-close span img.bin {
+    width: 14px !important;
+    height: auto !important;
+}
+.lnr-cross::before {
+    content: "" !important;
 }
 ul.cart-list > li.total > span {
     padding-top: 0px;
@@ -446,13 +455,20 @@ ul.cart-list > li.total {
 /*welcome-hero-content*/
 
 /* .carousel-indicators */
-.carousel-indicators {bottom: 4.5%;}
+.carousel-indicators {
+    bottom: 4.5%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
 .carousel-indicators li {
     position: relative;
     display: inline-block;
     width: 8px;
     height: 8px;
-    margin: 12px 10px 0 0;
+    margin-top: 9px;
+    /* margin: 12px 10px 0 0; */
     text-indent: -999px;
     cursor: pointer;
     background-color: transparent;
@@ -480,7 +496,7 @@ ul.cart-list > li.total {
     top: 4px;
     width: 16px;
     height: 16px;
-    margin:12px 10px 0 0;
+    /* margin:12px 10px 0 0; */
     background-color: transparent;
     border:1px solid #e99c2e;
 }

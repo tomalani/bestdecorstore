@@ -36,7 +36,7 @@
                                             <span class="lnr lnr-plus-circle"></span>
                                             add <span>to</span> cart
                                         </button>
-                                        <button class="btn-cart welcome-add-cart welcome-more-info">more info</button>
+                                        <button class="btn-cart welcome-add-cart welcome-more-info"  onclick="location.replace('{{ url('shop/'.$product_hl->id) }}')" >more info</button>
                                     </div><!--/.welcome-hero-txt-->
                                 </div><!--/.single-welcome-hero-->
                             </div><!--/.col-->
