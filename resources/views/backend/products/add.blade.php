@@ -1,14 +1,10 @@
 @extends('layouts.template_backend')
 
 @section('content')
-    <!-- Include Dropzone.js library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.css" type="text/css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
-
     <div class="container-fluid py-4">
         <form action="{{ url('/backend/products/insert') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            
+
             <div class="form-group">
                 <label for="product_name" class="form-control-label">Product Name</label>
                 <input class="form-control" type="text" id="product_name" name="product_name">
@@ -37,9 +33,8 @@
                     @endforeach
                 </select>
             </div>
-            <!-- Form content -->
-            <div class="dropzone" id="imageDropzone"></div>
-            {{-- <div class="form-check">
+            
+            <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="1" id="fcustomCheck1" name="is_highlight">
                 <label class="custom-control-label" for="customCheck1">Highlight</label>
             </div>
@@ -47,19 +42,6 @@
                 <label for="image1" class="form-control-label">Image1</label>
                 <input class="form-control" type="file" name="image1" id="image1">
             </div>
-            <div class="form-group">
-                <label for="image2" class="form-control-label">Image2</label>
-                <input class="form-control" type="file" name="image2" id="image2">
-            </div>
-            <div class="form-group">
-                <label for="image3" class="form-control-label">Image3</label>
-                <input class="form-control" type="file" name="image3" id="image3">
-            </div>
-            <div class="form-group">
-                <label for="image4" class="form-control-label">Image4</label>
-                <input class="form-control" type="file" name="image4" id="image4">
-            </div> --}}
-
 
             <button type="reset" class="btn btn-danger">
                 Discard
@@ -84,15 +66,4 @@
             </div>
         </footer>
     </div>
-
-    <script>
-        Dropzone.options.imageDropzone = {
-            paramName: "image", // Name of the input field
-            maxFilesize: 2, // Max filesize in MB
-            addRemoveLinks: true, // Show remove links on uploaded images
-            dictRemoveFile: "Remove", // Text for remove links
-            url: "{{ url('/upload-url') }}", // Replace '/upload-url' with your actual upload route
-            // Other configurations or event handlers as needed
-        };
-    </script>
 @endsection

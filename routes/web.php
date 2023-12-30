@@ -36,6 +36,8 @@ Route::middleware(['auth.check'])->group(function () {
     Route::get('/backend/products/edit/{id}', [App\Http\Controllers\ProductsController::class, 'edit']);
     Route::post('/backend/products/update', [App\Http\Controllers\ProductsController::class, 'update']);
 
+    Route::post('/uploads-file-image', [App\Http\Controllers\ProductsController::class, 'uploadsImgProduct']);
+
     // backend categories
     Route::get('/backend/categories', [App\Http\Controllers\CategoriesController::class, 'index'])->name('backend-categories');
     ;

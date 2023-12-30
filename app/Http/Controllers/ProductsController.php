@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\DataAccess\ProductsDataAccess;
 use App\Http\DataAccess\CategoriesDataAccess;
 use DateTime;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
@@ -69,10 +70,8 @@ class ProductsController extends Controller
         $result = $this->productsDataAccess->insert($data);
 
         if ($result > 0) { // insert success then return ID
-            foreach (['image1', 'image2', 'image3', 'image4'] as $imageName) {
-                if ($request->hasFile($imageName)) {
-                    $this->insertProductImg($request->file($imageName), $result);
-                }
+            if ($request->hasFile('image1')) {
+                $this->insertProductImg($request->file('image1'), $result);
             }
 
             // redirect with message
@@ -95,11 +94,12 @@ class ProductsController extends Controller
         $timestamp = now()->timestamp;
         $randomDigits = mt_rand(10, 99);
         $imageName = "{$id}_{$timestamp}{$randomDigits}.{$image->getClientOriginalExtension()}";
-        $imagePath = $image->storeAs('products', $imageName, 'public');
-
         if ($findImageProduct == 0) {
-            $imageName = $result;
+            // Change the image name based on $result and its extension
+            $imageName = $result . '.' . $image->getClientOriginalExtension();
         }
+        $image->move(public_path('assets/img/product'), $imageName);
+
 
         $data = [
             'product_id' => $result,
@@ -147,8 +147,9 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $products = $this->productsDataAccess->getById($id);
+        $productImage = $this->productsDataAccess->getImageProductId($products->id);
         $categories = $this->categoriesDataAccess->getAll();
-        return view('backend.products.edit')->with('products', $products)->with('categories', $categories);
+        return view('backend.products.edit')->with('products', $products)->with('categories', $categories)->with('productImg', $productImage);
     }
     public function delete($id)
     {
@@ -168,6 +169,7 @@ class ProductsController extends Controller
     }
     public function update(Request $request)
     {
+        dd($request->hasFile('file'));
         $id = $request->input('id');
         $product_name = $request->input('product_name');
         $product_description = $request->input('product_description');
@@ -175,15 +177,6 @@ class ProductsController extends Controller
         $product_code = $request->input('product_code');
         $category_id = $request->input('category_id');
         $price_from = $request->input('price_from');
-
-        // // check existing
-        // $e = $this->productsDataAccess->isExistName($product_name);
-        // if ($e > 0) {
-        //     return Redirect::to("/backend/products/edit")
-        //         ->withInput()
-        //         ->with("messageFail", "Fail")
-        //         ->with("messageDetail", 'Name already exist');
-        // }
 
         // prepared data
         $data = [
@@ -215,5 +208,9 @@ class ProductsController extends Controller
                 ->with("messageFail", "Failed")
                 ->with("messageDetail", 'Create Failed');
         }
+    }
+    public function uploadsImgProduct(Request $request)
+    {
+        dd($request);
     }
 }

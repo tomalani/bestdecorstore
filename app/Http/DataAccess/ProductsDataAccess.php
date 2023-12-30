@@ -23,12 +23,17 @@ class ProductsDataAccess
     }
     public function insertImageProducts($data)
     {
-        return ImageProducts::insertGetId($data
+        return ImageProducts::insertGetId(
+            $data
         );
     }
     public function getById($id)
     {
         return Products::where('id', '=', $id)->first();
+    }
+    public function getImageProductId($id)
+    {
+        return ImageProducts::where('product_id', '=', $id)->first();
     }
     public function getImageProductByProductId($id)
     {
