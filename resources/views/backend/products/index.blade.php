@@ -88,12 +88,23 @@
                                         <tr>
                                             <td>
                                                 <div class="warp-img-table ">
-                                                    @if ($key >= 3)
-                                                        <img src="{{ url('assets/img/product/' . $obj->id . '.jpg') }}"
-                                                            alt="slider image">
+                                                    <?php
+                                                    $jpgFilePath = public_path('assets/img/product/' . $obj->id . '.jpg');
+                                                    $pngFilePath = public_path('assets/img/product/' . $obj->id . '.png');
+                                                    
+                                                    $imageUrl = '';
+                                                    
+                                                    if (file_exists($jpgFilePath)) {
+                                                        $imageUrl = asset('assets/img/product/' . $obj->id . '.jpg');
+                                                    } elseif (file_exists($pngFilePath)) {
+                                                        $imageUrl = asset('assets/img/product/' . $obj->id . '.png');
+                                                    }
+                                                    ?>
+
+                                                    @if ($imageUrl)
+                                                        <img src="{{ $imageUrl }}" alt="slider image">
                                                     @else
-                                                        <img src="{{ url('assets/img/product/' . $obj->id . '.png') }}"
-                                                            alt="slider image">
+                                                        <p>No image available</p>
                                                     @endif
                                                 </div>
 
