@@ -170,7 +170,6 @@ class ProductsController extends Controller
     }
     public function update(Request $request)
     {
-        dd($request->hasFile('file'));
         $id = $request->input('id');
         $product_name = $request->input('product_name');
         $product_description = $request->input('product_description');
