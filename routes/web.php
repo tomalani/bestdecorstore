@@ -33,8 +33,11 @@ Route::middleware(['auth.check'])->group(function () {
     Route::get('/backend/products', [App\Http\Controllers\ProductsController::class, 'index'])->name('backend-products');
     Route::get('/backend/products/add', [App\Http\Controllers\ProductsController::class, 'add']);
     Route::post('/backend/products/insert', [App\Http\Controllers\ProductsController::class, 'insert']);
-    Route::get('/backend/products/edit/{id}', [App\Http\Controllers\ProductsController::class, 'edit']);
+    Route::get('/backend/products/edit/{id}', [App\Http\Controllers\ProductsController::class, 'edit'])->name('product-edit');
     Route::post('/backend/products/update', [App\Http\Controllers\ProductsController::class, 'update']);
+
+    Route::post('/backend/uploads-image', [App\Http\Controllers\ProductsController::class, 'uploadsImgProduct'])->name('uploadsImgProduct');
+    Route::post('/backend/del-product-image', [App\Http\Controllers\ProductsController::class, 'delProductImg'])->name('delProductImg');
 
     Route::post('/uploads-file-image', [App\Http\Controllers\ProductsController::class, 'uploadsImgProduct']);
 

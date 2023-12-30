@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\DataAccess\ProductsDataAccess;
 use App\Http\DataAccess\CategoriesDataAccess;
 use DateTime;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
@@ -211,6 +212,50 @@ class ProductsController extends Controller
     }
     public function uploadsImgProduct(Request $request)
     {
-        dd($request);
+        $product_id = $request->input('product_id');
+        //check file uploads
+        if (!$request->hasFile('update_img')) {
+            return redirect()->route('product-edit', $product_id);
+        }
+
+        $findImageProduct = $this->productsDataAccess->getImageProductByProductId($product_id);
+        // Other update logic
+        $image = $request->file('update_img');
+        $id = $product_id;
+        $timestamp = now()->timestamp;
+        $randomDigits = mt_rand(10, 99);
+        $imageName = "{$id}_{$timestamp}{$randomDigits}.{$image->getClientOriginalExtension()}";
+        $imagePath = $image->storeAs('products', $imageName, 'public');
+
+        if ($findImageProduct == 0) {
+            // Change the image name based on $result and its extension
+            $imageName = $product_id . '.' . $image->getClientOriginalExtension();
+        }
+
+        $image->move(public_path('assets/img/product'), $imageName);
+
+
+        $data = [
+            'product_id' => $product_id,
+            'image_name' => $imageName,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+
+        ];
+        $e = $this->productsDataAccess->insertImageProduct($data);
+
+        return redirect()->route('product-edit', $product_id);
+    }
+
+    public function delProductImg(Request $request)
+    {
+        $imgId = $request->input('del-img-product-id');
+        $e = $this->productsDataAccess->findImgById($imgId);
+        $product_id = $e->id;
+        File::delete(public_path('assets/img/product'), $e->image_name);
+
+        $e = $this->productsDataAccess->deleteImgProduct($imgId);
+
+        return redirect()->route('product-edit', $product_id);
     }
 }

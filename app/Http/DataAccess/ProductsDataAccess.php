@@ -33,7 +33,7 @@ class ProductsDataAccess
     }
     public function getImageProductId($id)
     {
-        return ImageProducts::where('product_id', '=', $id)->first();
+        return ImageProducts::where('product_id', '=', $id)->get();
     }
     public function getImageProductByProductId($id)
     {
@@ -46,6 +46,18 @@ class ProductsDataAccess
     public function updateImageProduct($id, $data)
     {
         return ImageProducts::where('id', '=', $id)->update($data);
+    }
+    public function insertImageProduct($data)
+    {
+        return ImageProducts::insert($data);
+    }
+    public function findImgById($id)
+    {
+        return ImageProducts::where('id', '=', $id)->first();
+    }
+    public function deleteImgProduct($id)
+    {
+        return ImageProducts::where('id', '=', $id)->delete();
     }
     public function delete($id)
     {

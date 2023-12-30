@@ -5,7 +5,32 @@
         .wrap-imgzone img {
             height: 150px;
             width: 100%;
-            object-fit: cover
+            object-fit: cover;
+        }
+
+        .wrap-imgzone {
+            position: relative;
+        }
+
+        .wrap-imgzone span {
+            position: absolute;
+            top: 5px;
+            right: 14px;
+            cursor: pointer;
+            border-radius: 50%;
+            background: red;
+            color: #ffffff;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrap-imgzone span:hover {
+            opacity: 0.8;
+            transition: all 0.2s;
         }
     </style>
     <div class="container-fluid py-4">
@@ -50,16 +75,20 @@
                     @if ($products->is_highlight == 1) checked @endif>
                 <label class="custom-control-label" for="customCheck1">Highlight</label>
             </div>
-            <!-- Your HTML form -->
-            <div class="form-group">
-                <input type="file" name="file[]" id="upload_img" multiple>
+
+            {{-- UploadsIma --}}
+            <a class="btn btn-primary" id="update-image" data-bs-toggle="modal" data-bs-target="#update-product">Add
+                image</a>
+            <div class="form-group row">
+                @foreach ($productImg as $item)
+                    <div class="col-2 wrap-imgzone">
+                        <img src="{{ url('assets/img/product/' . $item->image_name) }}" alt="">
+
+                        <span class="del-img-products" id={{ $item->id }}>x</span>
+                    </div>
+                @endforeach
             </div>
-            <div class="form-group">
-                <input type="file" class="uploads_products_img" id="uploads_products_img" name="images[]" multiple
-                    hidden>
-                <label for="upload_img" class="form-control-label">Image Products</label>
-                <div class="img-zone row"></div>
-            </div>
+
 
             {{-- <div class="form-group">
                 <label for="image1" class="form-control-label">Image1</label>
@@ -100,10 +129,66 @@
                 </div>
             </div>
         </footer>
-
+    </div>
+    <div class="modal fade" id="update-product" tabindex="-1" role="dialog" aria-labelledby="update-product"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">uploads image</h5>
+                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('uploadsImgProduct') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="product_id" id="product_id" value="{{ $products->id }}">
+                    <div class="modal-body">
+                        <input name="update_img" class="form-control" type="file">
+                    </div>
+                    <div class="modal-footer ">
+                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn bg-gradient-primary" id="z">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="del-img-product-modal" tabindex="-1" role="dialog"
+        aria-labelledby="del-img-product-modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">uploads image</h5>
+                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('delProductImg') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="del-img-product-id" id="del-img-product-id">
+                    <div class="modal-body">
+                        <h4>Confirm Delete Image</h4>
+                        <input name="update_img" class="form-control" type="file">
+                    </div>
+                    <div class="modal-footer ">
+                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn bg-gradient-primary" id="z">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $('.del-img-products').on('click', function() {
+                const id = $(this).attr('data-id');
+                $('.del-img-product-id').val(id);
+
+                $('#del-img-product-modal').modal('show');
+            })
+        });
         // $(document).ready(function() {
         //     let imgGroup = []; // Array to store selected image URLs
         //     let allFiles = []; // Array to store all selected files
@@ -135,10 +220,10 @@
         //     function displayImages() {
         //         const images = imgGroup.map((image) => {
         //             return `
-        //         <div class="col-2 wrap-imgzone">
-        //             <img src="${image}" alt="">
-        //         </div>
-        //     `;
+    //         <div class="col-2 wrap-imgzone">
+    //             <img src="${image}" alt="">
+    //         </div>
+    //     `;
         //         });
 
         //         $('.img-zone').append(images.join(''));
