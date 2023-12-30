@@ -27,6 +27,9 @@ Route::get('/checkout', [App\Http\Controllers\OrderController::class, 'checkout'
 Route::post('/order-save', [App\Http\Controllers\OrderController::class, 'orderSave'])->name('order-save');
 Route::get('/order-success', [App\Http\Controllers\OrderController::class, 'orderSuccess'])->name('order-success');
 
+Route::get('/shop', [App\Http\Controllers\HomeController::class, 'shop'])->name('shop');
+Route::get('/shop/{id}', [App\Http\Controllers\HomeController::class, 'shopDetail'])->name('shop-detail');
+
 Auth::routes();
 Route::middleware(['auth.check'])->group(function () {
     // backend products

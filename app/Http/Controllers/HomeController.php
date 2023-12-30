@@ -19,4 +19,24 @@ class HomeController extends Controller
         ]);
     }
 
+    public function shop()
+    {
+        $products = ProductModel::orderBy('id', 'asc')->get();
+
+        return View::make("shop")->with([
+            'products' => $products,
+        ]);
+    }
+
+    public function shopDetail($id)
+    {
+        $product = ProductModel::where('id', $id)->first();
+        $relate_products = ProductModel::where('id', '<>', $id)->inRandomOrder()->limit(3)->get();
+
+        return View::make("shop_detail")->with([
+            'product' => $product,
+            'relateProducts' => $relate_products,
+        ]);
+    }
+
 }

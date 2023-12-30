@@ -1,4 +1,4 @@
-<div class="col-md-3 col-sm-4">
+<div class="col-4 col-sm-4 col-md-3">
     <div class="single-new-arrival">
         <div class="single-new-arrival-bg">
             <img src="{{ url('assets/img/product/'.$product->id.'.jpg') }}" alt="new-arrivals images">
@@ -15,7 +15,7 @@
                 </p>
             </div>
         </div>
-        <h4><a href="#">{{ $product->product_name }}</a></h4>
+        <h4><a href="{{ url('shop/'.$product->id) }}">{{ $product->product_name }}</a></h4>
         <p class="arrival-product-price">${{ $product->price }}</p>
         <del>{{ $product->price_from }}</del>
     </div>

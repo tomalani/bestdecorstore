@@ -182,15 +182,34 @@ nav.navbar.bootsnav ul.nav > li.dropdown span {
 nav.navbar.bootsnav.menu-center .attr-nav {
     position: relative;
     right: 60px;
-    padding: 52px 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: .3s all ease-out;
+    padding-top: 50px;
 }
 nav.navbar.bootsnav.menu-center.sticked .attr-nav {
-    padding: 23px 0;
+    padding: 0;
+    padding-top: 24px;
+    padding-bottom: 20px;
     top: 6px;
+}
+nav #navbar-menu {
+    margin-top: -110px;
+}
+nav #navbar-menu ul {
+    margin-top: 32px;
+}
+nav.navbar.bootsnav.menu-center.sticked #navbar-menu ul {
+    margin-top: 36px;
+}
+.navbar-brand {
+    padding: 0 !important;
+    margin-top: 42px;
+}
+nav.navbar.bootsnav.menu-center.sticked .navbar-brand {
+    margin-top: 30px;
 }
 .attr-nav > div {
 
@@ -1153,5 +1172,61 @@ span.feature-review {margin-left: 10px;}
     font-size: 18px;
     border-top: 2px solid #ddd;
     padding-top: 1rem;
+}
+.product-detail {
+}
+.product-detail p {
+    color: #444;
+}
+.product-detail p.product-name {
+    font-size: 2.0rem;
+    font-weight: 600;
+}
+.product-detail p.product-header {
+    font-size: 1.5rem;
+    color: #E99C2D;
+    margin-top: 2rem;
+}
+.product-detail .product-price {
+    font-size: 2.6rem;
+    font-weight: 600;
+    margin-top: 2rem;
+}
+.product-detail .product-quan .btn {
+    background: #eee;
+    border: 1px solid #ddd;
+    color: #ccc;
+    line-height: 2px;
+    width: 18px;
+    height: 25px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1rem;
+}
+.product-detail .product-quan .welcome-add-cart {
+    margin-top: 0;
+    margin-left: 3rem;
+}
+.product-related {
+    margin-bottom: 4rem;
+}
+.products-related h3 {
+    color: #E99C2D;
+    width: 200px;
+    font-size: 2.4rem;
+    display: inline-block;
+    margin: 8rem auto 6rem auto;
+    padding-bottom: 2rem;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.product-related a p {
+    transition: 0.3s all linear;
+}
+.product-related a:hover p {
+    color: #E99C2D;
 }
 /*========================Thank you=================
