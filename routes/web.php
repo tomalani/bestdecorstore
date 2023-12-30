@@ -79,4 +79,9 @@ Route::middleware(['auth.check'])->group(function () {
 
     //ajax backend order
     Route::get('/backend/ajax-orders-item', [App\Http\Controllers\OrderController::class, 'ajax_order_items'])->name('backend.orders.item.ajax');
+
+    //conact backend
+    Route::get('backend/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact-index');
+    Route::get('backend/contact/edit/{id}', [\App\Http\Controllers\ContactController::class, 'edit'])->name('contact-edit');
+    Route::post('backend/contact/delete', [\App\Http\Controllers\ContactController::class, 'delete'])->name('delect-contacts');
 });

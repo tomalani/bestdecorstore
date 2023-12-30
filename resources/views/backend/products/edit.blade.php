@@ -76,17 +76,9 @@
                 <label class="custom-control-label" for="customCheck1">Highlight</label>
             </div>
 
-            {{-- UploadsIma --}}
-            <a class="btn btn-primary" id="update-image" data-bs-toggle="modal" data-bs-target="#update-product">Add
-                image</a>
-            <div class="form-group row">
-                @foreach ($productImg as $item)
-                    <div class="col-2 wrap-imgzone">
-                        <img src="{{ url('assets/img/product/' . $item->image_name) }}" alt="">
-
-                        <span class="del-img-products" id={{ $item->id }}>x</span>
-                    </div>
-                @endforeach
+            <div class="form-group">
+                <label for="image1" class="form-control-label">Main Image</label>
+                <input class="form-control" type="file" name="image1" id="image1">
             </div>
 
 
@@ -114,6 +106,19 @@
                 Update Products
             </button>
         </form>
+
+        {{-- UploadsIma --}}
+        <a class="btn btn-primary" id="update-image" data-bs-toggle="modal" data-bs-target="#update-product">Add
+            image</a>
+        <div class="form-group row">
+            @foreach ($productImg as $item)
+                <div class="col-2 wrap-imgzone">
+                    <img src="{{ url('assets/img/product/' . $item->image_name) }}" alt="">
+
+                    <span class="del-img-products" id={{ $item->id }}>x</span>
+                </div>
+            @endforeach
+        </div>
         <footer class="footer pt-3  ">
             <div class="container-fluid">
                 <div class="row align-items-center justify-content-lg-between">

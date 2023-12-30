@@ -26,6 +26,11 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
+    <style>
+        .nav-link.active svg {
+            fill: beige;
+        }
+    </style>
     <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 "
         id="sidenav-main">
         <div class="sidenav-header">
@@ -99,7 +104,7 @@
                         <span class="nav-link-text ms-1">Category</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ Request::is('backend/users*') ? 'active' : '' }}"
                         href="{{ route('backend-users') }}">
                         <div
@@ -128,7 +133,7 @@
                         </div>
                         <span class="nav-link-text ms-1">Users</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('backend/order*') ? 'active' : '' }}"
                         href="{{ route('backend-orders') }}">
@@ -157,6 +162,22 @@
                             </svg>
                         </div>
                         <span class="nav-link-text ms-1">Orders</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('backend/contact*') ? 'active' : '' }}"
+                        href="{{ route('contact-index') }}">
+                        <div
+                            class="icon
+                        icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center
+                        justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16"
+                                viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                                <path
+                                    d="M384 48c8.8 0 16 7.2 16 16V448c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H384zM96 0C60.7 0 32 28.7 32 64V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H96zM240 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128zm-32 32c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16H336c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80H208zM512 80c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V80zM496 192c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm16 144c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V336z" />
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Contacts</span>
                     </a>
                 </li>
             </ul>
@@ -239,7 +260,7 @@
     <script src="{{ url('assets/js/js-dashboard/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ url('assets/js/js-dashboard/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ url('assets/js/js-dashboard/plugins/chartjs.min.js') }}"></script>
- 
+
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {

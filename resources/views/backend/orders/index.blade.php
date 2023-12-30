@@ -54,6 +54,34 @@
             color: #1e2e4a;
             background-color: #8097bf;
         }
+
+        .block-detail-img img {
+            height: 100px;
+            width: 100px;
+        }
+
+        .fs-order-txt {
+            font-size: 24px;
+        }
+
+        .fs-order-number {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .txt-bold {
+            font-weight: 600;
+        }
+
+        .txt-total {
+            font-size: 18px !important;
+            font-weight: 700 !important;
+            color: black;
+        }
+
+        .txt-delivery {
+            color: #67b108
+        }
     </style>
     <div class="container-fluid py-4">
         <div class="row">
@@ -197,16 +225,35 @@
         <div class="modal fade" id="confirm_order_table" tabindex="-1" role="dialog" aria-labelledby="confirm_order"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Details Order</h5>
+                <div class="modal-content ">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title" id="exampleModalLabel">Order Details </h5>
                         {{-- <h5 class="modal-title" id="exampleModalLabel">Confirm Order</h5> --}}
                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <div class="d-flex align-items-center justify-content-start gap-2">
+                    <div class="modal-body border-0">
+                        <div class="info-order">
+                            <div class="d-flex block-detail-img">
+                                <div class="w-50"><img src="{{ url('assets/images/icons/clipboard.png') }}"
+                                        alt=""></div>
+
+                                <div class="right-info text-right w-50">
+                                    <div class="order-number-txt">
+                                        <span class="fs-order-txt">Order </span>
+                                        <span class="fs-order-number"> 123123123</span>
+                                    </div>
+                                    <div>
+                                        <span>Issue date :</span><span class="txt-bold">Order</span>
+                                    </div>
+                                    <div>
+                                        <span>Status :</span> <span class="txt-bold">Order</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="d-flex align-items-center justify-content-start gap-2">
                             Customer Name : <span class="customer-name-con"></h4>
                         </div>
                         <div class="d-flex align-items-center justify-content-start gap-2">
@@ -232,12 +279,12 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-start gap-2">
                             Email : <span class="customer-email-con"></h4>
-                        </div>
+                        </div> --}}
                     </div>
                     <form action="{{ url('backend/orders/confirm-order') }}" method="POST">
                         @csrf
                         <input type="hidden" name="order_id" id="order-id-confirm">
-                        <div class="modal-body">
+                        <div class="modal-body p-0 border-0">
                             <div class="card">
                                 <div class="table-responsive">
                                     <table class="table align-items-center mb-0" id="confirm-data-order-table">
@@ -264,7 +311,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer confirm-group-btn">
+                        <div class="modal-body border-0">
+                            <h4 class="txt-delivery">Delivery To</h4>
+                            <div>
+                                <span id="delivery-info-txt" class=""></span>
+                            </div>
+                            <div>
+                                <span>Mobile - </span><span id="contact-info"></span>
+                            </div>
+                            <div>
+                                <span>Name - </span><span id="name-customer-info"></span>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0 confirm-group-btn">
                             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</a>
                         </div>
                     </form>
@@ -394,16 +453,16 @@
 
                         const tr_sum = `<tr>
                                                 <td>
-                                                   
+                                                    <p class="text-xs txt-total font-weight-bold mb-0">Total : </p>
                                                 </td>
                                             <td>
                                                
                                             </td>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">Total : </p>
+                                               
                                             </td>
                                             <td class="align-middle text-center">
-                                                <p class="text-xs font-weight-bold mb-0">$ ${(sum_table).toFixed(2)}</p>
+                                                <p class="text-xs txt-total font-weight-bold mb-0">$ ${(sum_table).toFixed(2)}</p>
                                             </td>
                                         </tr>`
                         const groupBtn = `<a href="${window.location.origin}/backend/orders/reject-order/${orderId}" class="btn bg-gradient-danger" >Reject</a>
@@ -421,6 +480,13 @@
                         $(".customer-country-con").html(customCountry)
                         $(".customer-email-con").html(customEmail)
                         $("#order-id-confirm").val(orderId)
+
+                        const addressInfo =
+                            `${customPostal} Village ${customAddress}, ${customAddress2 ? customAddress2+',':'' } ${customsState}, ${customCity}, ${customCountry}`
+                        $("#delivery-info-txt").html(addressInfo)
+
+                        $("#contact-info").html(customPhone)
+                        $("#name-customer-info").html(customName)
                         // Show modal
                         $('#confirm_order_table').modal('show');
                     },

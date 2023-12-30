@@ -88,28 +88,23 @@ class ProductsController extends Controller
     }
     public function insertProductImg($file, $result)
     {
-        $findImageProduct = $this->productsDataAccess->getImageProductByProductId($result);
-        // Other update logic
         $image = $file;
         $id = $result;
         $timestamp = now()->timestamp;
         $randomDigits = mt_rand(10, 99);
-        $imageName = "{$id}_{$timestamp}{$randomDigits}.{$image->getClientOriginalExtension()}";
-        if ($findImageProduct == 0) {
-            // Change the image name based on $result and its extension
-            $imageName = $result . '.' . $image->getClientOriginalExtension();
-        }
+        $imageName = $result . '.' . $image->getClientOriginalExtension();
+
         $image->move(public_path('assets/img/product'), $imageName);
 
 
-        $data = [
-            'product_id' => $result,
-            'image_name' => $imageName,
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime()
-        ];
+        // $data = [
+        //     'product_id' => $result,
+        //     'image_name' => $imageName,
+        //     'created_at' => new DateTime(),
+        //     'updated_at' => new DateTime()
+        // ];
 
-        $result = $this->productsDataAccess->insertImageProducts($data);
+        // $result = $this->productsDataAccess->insertImageProducts($data);
 
         // redirect with message
         return Redirect::to('/backend/products')
@@ -118,27 +113,12 @@ class ProductsController extends Controller
     }
     public function updateProductImg($file, $result)
     {
-        $findImageProduct = $this->productsDataAccess->getImageProductByProductId($result);
         // Other update logic
         $image = $file;
         $id = $result;
-        $timestamp = now()->timestamp;
-        $randomDigits = mt_rand(10, 99);
-        $imageName = "{$id}_{$timestamp}{$randomDigits}.{$image->getClientOriginalExtension()}";
-        $imagePath = $image->storeAs('products', $imageName, 'public');
+        $imageName = "{$id}.{$image->getClientOriginalExtension()}";
 
-        if ($findImageProduct > 0) {
-            $imageName = $result;
-        }
-
-        $data = [
-            'product_id' => $result,
-            'image_name' => $imageName,
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime()
-        ];
-
-        $result = $this->productsDataAccess->updateImageProduct($result, $data);
+        $image->move(public_path('assets/img/product'), $imageName);
 
         // redirect with message
         return Redirect::to('/backend/products')
@@ -193,10 +173,8 @@ class ProductsController extends Controller
         $result = $this->productsDataAccess->update($id, $data);
 
         if ($result > 0) { // insert success then return ID
-            foreach (['image1', 'image2', 'image3', 'image4'] as $imageName) {
-                if ($request->hasFile($imageName)) {
-                    $this->updateProductImg($request->file($imageName), $result);
-                }
+            if ($request->hasFile('image1')) {
+                $this->updateProductImg($request->file('image1'), $result);
             }
             // redirect with message
             return Redirect::to('/backend/products')
@@ -217,19 +195,12 @@ class ProductsController extends Controller
             return redirect()->route('product-edit', $product_id);
         }
 
-        $findImageProduct = $this->productsDataAccess->getImageProductByProductId($product_id);
         // Other update logic
         $image = $request->file('update_img');
         $id = $product_id;
         $timestamp = now()->timestamp;
         $randomDigits = mt_rand(10, 99);
         $imageName = "{$id}_{$timestamp}{$randomDigits}.{$image->getClientOriginalExtension()}";
-        $imagePath = $image->storeAs('products', $imageName, 'public');
-
-        if ($findImageProduct == 0) {
-            // Change the image name based on $result and its extension
-            $imageName = $product_id . '.' . $image->getClientOriginalExtension();
-        }
 
         $image->move(public_path('assets/img/product'), $imageName);
 

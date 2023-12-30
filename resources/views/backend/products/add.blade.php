@@ -39,7 +39,7 @@
                 <label class="custom-control-label" for="customCheck1">Highlight</label>
             </div>
             <div class="form-group">
-                <label for="image1" class="form-control-label">Image1</label>
+                <label for="image1" class="form-control-label">Main Image</label>
                 <input class="form-control" type="file" name="image1" id="image1">
             </div>
 
