@@ -20,7 +20,7 @@
                         <img src="{{ url('assets/img/product/'.$product->id.'.jpg') }}" class="img-fluid" id="product-image" alt="">
                         <div class="row img-product-container d-flex flex-row flex-wrap">
                             <div class="col-md-4">
-                                <img src="{{ url('assets/img/product/'.$product->id.'.jpg') }}" class="img-product" data-img="{{ $product->id }}.jpg"  />
+                                <img src="{{ url('assets/img/product/'.$product->id.'.jpg') }}" class="img-product" data-img="{{ $product->id }}.jpg "  />
                             </div>
                             @foreach ($imgProducts as $item)
                                 <div class="col-md-4">
@@ -35,16 +35,7 @@
                         <p class="product-header">Description:</p>
                         <p>{{ $product->product_description }}</p>
                         <p class="product-price">$ {{ number_format($product->price, 2) }}</p>
-                        <div class="d-flex flex-row mt-5 product-quan align-items-center">
-                            <button class="btn">-</button>
-                            <div class="product-quan-num">1</div>
-                            <button class="btn">+</button>
-                            <button class="btn-cart welcome-add-cart"
-                                wire:click="addToCart({{ $product->id }})">
-                                <span class="lnr lnr-plus-circle"></span>
-                                add <span>to</span> cart
-                            </button>
-                        </div>
+                        <livewire:cart-add :product="$product" />
                     </div>
                 </div>
                 <div class="row mt-5 products-related">
