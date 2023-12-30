@@ -109,7 +109,7 @@
                             <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
                                 <li @if(Route::currentRouteName()=='home') class="active" @endif><a href="{{ route('home') }}">home</a></li>
                                 <li @if(Route::currentRouteName()=='shop') class="active" @endif><a href="{{ route('shop') }}">products</a></li>
-                                <li @if(Route::currentRouteName()=='contact') class="active" @endif><a href="#">contact</a></li>
+                                <li @if(Route::currentRouteName()=='contact') class="active" @endif><a href="{{ route('contact') }}">contact</a></li>
                             </ul><!--/.nav -->
                         </div><!-- /.navbar-collapse -->
                     </div><!--/.container-->

@@ -30,6 +30,9 @@ Route::get('/order-success', [App\Http\Controllers\OrderController::class, 'orde
 Route::get('/shop', [App\Http\Controllers\HomeController::class, 'shop'])->name('shop');
 Route::get('/shop/{id}', [App\Http\Controllers\HomeController::class, 'shopDetail'])->name('shop-detail');
 
+Route::get('/contact', [App\Http\Controllers\ContactController::class, 'contact'])->name('contact');
+Route::get('/contact-insert', [App\Http\Controllers\ContactController::class, 'insert'])->name('contact-insert');
+
 Auth::routes();
 Route::middleware(['auth.check'])->group(function () {
     // backend products

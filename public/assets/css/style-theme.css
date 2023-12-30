@@ -1245,4 +1245,60 @@ span.feature-review {margin-left: 10px;}
 .product-related a:hover p {
     color: #E99C2D;
 }
+
+.contact-container {
+    max-width: 80%;
+    margin: 0 auto;
+}
+.contact-container .form-floating input.form-control {
+    height: 6rem;
+}
+.contact-container .form-floating > label {
+    background: none;
+    font-weight: 400;
+    margin-left: 1rem;
+    padding: 2rem 0.75rem;
+}
+.contact-container .form-floating > label::after {
+    top: 0 !important;
+    background-color: transparent !important;
+    padding-bottom: 1rem;
+}
+.contact-container .form-floating textarea {
+    min-height: 3rem;
+    height: 10rem;
+}
+.contact-container button {
+    width: 170px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 1px;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+    margin-top: 34px;
+    background: #e99c2e;
+    border: 1px solid #e99c2e;
+    color: #FFF;
+    padding-top: 0;
+    -webkit-transition: 0.3s linear;
+    -moz-transition: 0.3s linear;
+    -ms-transition: 0.3s linear;
+    -o-transition: 0.3s linear;
+    transition: 0.3s linear;
+}
+.contact-container button:hover {
+    background: #FFF;
+    color: #e99c2e;
+    border: 1px solid #e99c2e;
+}
+.contact-success {
+    text-align: center;
+    padding: 80px 0;
+}
+.contact-success h3 {
+    font-size: 2.4rem;
+    margin-bottom: 4rem;
+}
+
 /*========================Thank you=================
