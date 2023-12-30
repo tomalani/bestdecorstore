@@ -1,6 +1,29 @@
 @extends('layouts.template_backend')
 
 @section('content')
+    @if (session()->has('messageSuccess'))
+        @php
+            $messageDetail = session('messageDetail');
+        @endphp
+        <script>
+            Swal.fire({
+                title: "Successfully!",
+                text: "{{ $messageDetail }}",
+                icon: "success",
+            });
+        </script>
+    @elseif (session()->has('messageFail'))
+        @php
+            $messageDetail = session('messageDetail');
+        @endphp
+        <script>
+            Swal.fire({
+                title: "Created failed!",
+                text: "{{ $messageDetail }}",
+                icon: "error",
+            });
+        </script>
+    @endif
     <style>
         .brap {
             display: inline-block;

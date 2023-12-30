@@ -1,6 +1,29 @@
 @extends('layouts.template_backend')
 
 @section('content')
+    @if (session()->has('messageSuccess'))
+        @php
+            $messageDetail = session('messageDetail');
+        @endphp
+        <script>
+            Swal.fire({
+                title: "Successfully!",
+                text: "{{ $messageDetail }}",
+                icon: "success",
+            });
+        </script>
+    @elseif (session()->has('messageFail'))
+        @php
+            $messageDetail = session('messageDetail');
+        @endphp
+        <script>
+            Swal.fire({
+                title: "Created failed!",
+                text: "{{ $messageDetail }}",
+                icon: "error",
+            });
+        </script>
+    @endif
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
@@ -45,7 +68,8 @@
                                                 <p class="text-xs font-weight-bold mb-0">{{ $obj->category_name }}</p>
                                             </td>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $obj->category_description }}</p>
+                                                <p class="text-xs font-weight-bold mb-0">{{ $obj->category_description }}
+                                                </p>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span

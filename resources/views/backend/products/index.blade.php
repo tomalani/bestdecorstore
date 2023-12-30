@@ -1,6 +1,29 @@
 @extends('layouts.template_backend')
 
 @section('content')
+    @if (session()->has('messageSuccess'))
+        @php
+            $messageDetail = session('messageDetail');
+        @endphp
+        <script>
+            Swal.fire({
+                title: "Successfully!",
+                text: "{{ $messageDetail }}",
+                icon: "success",
+            });
+        </script>
+    @elseif (session()->has('messageFail'))
+        @php
+            $messageDetail = session('messageDetail');
+        @endphp
+        <script>
+            Swal.fire({
+                title: "Created failed!",
+                text: "{{ $messageDetail }}",
+                icon: "error",
+            });
+        </script>
+    @endif
     <style>
         .text-pro-wrap,
         .text-cat-wrap {
@@ -13,12 +36,8 @@
             width: 150px;
             object-fit: contain;
         }
-
-        /* .text-cat-wrap {
-                                                            width: 500px;
-                                                            text-wrap: wrap;
-                                                        } */
     </style>
+
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
