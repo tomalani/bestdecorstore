@@ -17,7 +17,17 @@
 
                 <div class="row mt-5 mb-5 product-detail">
                     <div class="col-sm-12 col-md-5 col-12">
-                        <img src="{{ url('assets/img/product/'.$product->id.'.jpg') }}" class="img-fluid" alt="">
+                        <img src="{{ url('assets/img/product/'.$product->id.'.jpg') }}" class="img-fluid" id="product-image" alt="">
+                        <div class="row img-product-container d-flex flex-row flex-wrap">
+                            <div class="col-md-4">
+                                <img src="{{ url('assets/img/product/'.$product->id.'.jpg') }}" class="img-product" data-img="{{ $product->id }}.jpg"  />
+                            </div>
+                            @foreach ($imgProducts as $item)
+                                <div class="col-md-4">
+                                    <img src="{{ url('assets/img/product/'.$item->image_name) }}" class="img-product" data-img="{{ $item->image_name }}"  />
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-6 col-12">
                         <p class="product-header">Product:</p>
@@ -61,5 +71,11 @@
 @endsection
 
 @section('scripts')
-
+<script>
+    $('.img-product').click(function() {
+        let image_product = $(this).data('img');
+        console.log(image_product)
+        $('#product-image').attr('src', '/assets/img/product/'+image_product);
+    });
+</script>
 @endsection

@@ -1318,5 +1318,18 @@ span.feature-review {margin-left: 10px;}
     font-size: 2.4rem;
     margin-bottom: 4rem;
 }
-
+/* .img-product-container  {
+    display: flex;
+    justify-content: space-between;
+} */
+.img-product-container > div {
+    margin: 1rem 0;
+}
+.img-product {
+    max-width: 100%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 1px solid #ccc; 
+}
 /*========================Thank you=================

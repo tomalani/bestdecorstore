@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ImageProducts;
 use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use View;
@@ -31,10 +32,12 @@ class HomeController extends Controller
     public function shopDetail($id)
     {
         $product = ProductModel::where('id', $id)->first();
+        $img_products = ImageProducts::where('product_id', $id)->get();
         $relate_products = ProductModel::where('id', '<>', $id)->inRandomOrder()->limit(3)->get();
 
         return View::make("shop_detail")->with([
             'product' => $product,
+            'imgProducts' => $img_products,
             'relateProducts' => $relate_products,
         ]);
     }
