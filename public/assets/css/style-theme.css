@@ -1332,4 +1332,34 @@ span.feature-review {margin-left: 10px;}
     object-fit: cover;
     border: 1px solid #ccc; 
 }
+.product-image {
+    width: 100%;
+    height: auto;
+}
+
+/* Pagination */
+.paginator nav {
+    text-align: center;
+}
+.paginator nav>.pagination>li span {
+    font-size: 1.6rem !important;
+    border: none;
+}
+.paginator nav>.pagination>li>a {
+    font-size: 1.6rem !important;
+    border: none;
+    color: #e99c2e;
+}
+.paginator nav>.pagination>li>a:hover {
+    background: none;
+}
+.paginator nav>.pagination>li.active span {
+    background: #e99c2e;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+.paginator nav>.pagination>li.disabled span {
+    color: #ccc;
+}
 /*========================Thank you=================

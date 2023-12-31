@@ -17,7 +17,7 @@
 
                 <div class="row mt-5 mb-5 product-detail">
                     <div class="col-sm-12 col-md-5 col-12">
-                        <img src="{{ url('assets/img/product/'.$product->id.'.jpg') }}" class="img-fluid" id="product-image" alt="">
+                        <img src="{{ url('assets/img/product/'.$product->id.'.jpg') }}" class="img-fluid product-image" id="product-image" alt="">
                         <div class="row img-product-container d-flex flex-row flex-wrap">
                             <div class="col-md-4">
                                 <img src="{{ url('assets/img/product/'.$product->id.'.jpg') }}" class="img-product" data-img="{{ $product->id }}.jpg "  />

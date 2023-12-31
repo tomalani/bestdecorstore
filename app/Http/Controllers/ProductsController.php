@@ -220,8 +220,9 @@ class ProductsController extends Controller
     public function delProductImg(Request $request)
     {
         $imgId = $request->input('del-img-product-id');
+        $product_id = $request->input('product_id');
+
         $e = $this->productsDataAccess->findImgById($imgId);
-        $product_id = $e->id;
         File::delete(public_path('assets/img/product'), $e->image_name);
 
         $e = $this->productsDataAccess->deleteImgProduct($imgId);

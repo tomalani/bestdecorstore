@@ -20,6 +20,8 @@
                         <livewire:product-block :product="$product" />
                     @endforeach
                 </div>
+                
+                <div class="row paginator">{{ $products->links() }}</div>
             </div>
         </div><!--/.container-->
 

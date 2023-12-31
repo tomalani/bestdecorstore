@@ -22,7 +22,7 @@ class HomeController extends Controller
 
     public function shop()
     {
-        $products = ProductModel::orderBy('id', 'asc')->get();
+        $products = ProductModel::orderBy('id', 'asc')->paginate(16);
 
         return View::make("shop")->with([
             'products' => $products,

@@ -1,5 +1,17 @@
 @extends('layouts.template_backend')
 
+@section('css')
+<style>
+    .product-img {
+        width: 100%;
+        height: auto;
+        max-width: 160px;
+        display: block;
+        margin: 1rem 0;
+    }
+</style>
+@stop
+
 @section('content')
     <style>
         .wrap-imgzone img {
@@ -78,6 +90,7 @@
 
             <div class="form-group">
                 <label for="image1" class="form-control-label">Main Image</label>
+                <img src="{{ url('assets/img/product/'.$products->id.'.jpg') }}" class="product-img" />
                 <input class="form-control" type="file" name="image1" id="image1">
             </div>
 
@@ -107,6 +120,7 @@
             </button>
         </form>
 
+        <hr />
         {{-- UploadsIma --}}
         <a class="btn btn-primary" id="update-image" data-bs-toggle="modal" data-bs-target="#update-product">Add
             image</a>
@@ -115,7 +129,7 @@
                 <div class="col-2 wrap-imgzone">
                     <img src="{{ url('assets/img/product/' . $item->image_name) }}" alt="">
 
-                    <span class="del-img-products" id={{ $item->id }}>x</span>
+                    <span class="del-img-products" data-id={{ $item->id }} data-product_id="{{ $products->id }}">x</span>
                 </div>
             @endforeach
         </div>
@@ -159,12 +173,16 @@
             </div>
         </div>
     </div>
+
+
+
+    {{-- Delete image modal --}}
     <div class="modal fade" id="del-img-product-modal" tabindex="-1" role="dialog"
         aria-labelledby="del-img-product-modal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">uploads image</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Delete image</h5>
                     <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -172,9 +190,9 @@
                 <form action="{{ route('delProductImg') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="del-img-product-id" id="del-img-product-id">
+                    <input type="hidden" name="product_id" id="del-product_id">
                     <div class="modal-body">
                         <h4>Confirm Delete Image</h4>
-                        <input name="update_img" class="form-control" type="file">
                     </div>
                     <div class="modal-footer ">
                         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
@@ -188,8 +206,11 @@
     <script>
         $(document).ready(function() {
             $('.del-img-products').on('click', function() {
-                const id = $(this).attr('data-id');
-                $('.del-img-product-id').val(id);
+                const id = $(this).data('id');
+                const product_id = $(this).data('product_id');
+                console.log(product_id);
+                $('#del-img-product-id').val(id);
+                $('#del-product_id').val(product_id);
 
                 $('#del-img-product-modal').modal('show');
             })
